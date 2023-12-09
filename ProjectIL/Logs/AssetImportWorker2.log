@@ -1,0 +1,427 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.7f1 (b16b3b16c7a0) revision 11627323'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Education' Language: 'ko' Physical Memory: 16310 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.7f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Workspace/Unity/ProjectIL/ProjectIL
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+8113
+Successfully changed project path to: C:/Workspace/Unity/ProjectIL/ProjectIL
+C:/Workspace/Unity/ProjectIL/ProjectIL
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [28692] Host "[IP] 192.168.0.4 [Port] 0 [Flags] 2 [Guid] 3509304143 [EditorId] 3509304143 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-6UFKMDV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [28692] Host "[IP] 192.168.0.4 [Port] 0 [Flags] 2 [Guid] 3509304143 [EditorId] 3509304143 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-6UFKMDV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 17.12 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.7f1 (b16b3b16c7a0)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Workspace/Unity/ProjectIL/ProjectIL/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 (ID=0x2488)
+    Vendor:   NVIDIA
+    VRAM:     8032 MB
+    Driver:   31.0.15.3640
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56288
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.015984 seconds.
+- Loaded All Assemblies, in  0.395 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.261 seconds
+Domain Reload Profiling: 651ms
+	BeginReloadAssembly (127ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (35ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (75ms)
+	LoadAllAssembliesAndSetupDomain (143ms)
+		LoadAssemblies (121ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (140ms)
+			TypeCache.Refresh (138ms)
+				TypeCache.ScanAssembly (125ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (261ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (201ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (126ms)
+			ProcessInitializeOnLoadMethodAttributes (52ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Workspace\Unity\ProjectIL\ProjectIL\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Workspace\Unity\ProjectIL\ProjectIL\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.946 seconds
+Refreshing native plugins compatible for Editor in 8.44 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.849 seconds
+Domain Reload Profiling: 1789ms
+	BeginReloadAssembly (171ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (26ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (53ms)
+	LoadAllAssembliesAndSetupDomain (664ms)
+		LoadAssemblies (511ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (255ms)
+			TypeCache.Refresh (227ms)
+				TypeCache.ScanAssembly (205ms)
+			ScanForSourceGeneratedMonoScriptInfo (22ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (850ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (640ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (11ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (168ms)
+			ProcessInitializeOnLoadAttributes (391ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
+			AfterProcessingInitializeOnLoad (13ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (13ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 8.44 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4022 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 69 unused Assets / (244.8 KB). Loaded Objects now: 4480.
+Memory consumption went from 136.7 MB to 136.5 MB.
+Total: 4.614100 ms (FindLiveObjects: 0.523100 ms CreateObjectMapping: 0.144700 ms MarkObjects: 3.687500 ms  DeleteObjects: 0.257800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 693164.314708 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_88.asset
+  artifactKey: Guid(229da628056a7eb47801ad5f6365094e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_88.asset using Guid(229da628056a7eb47801ad5f6365094e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '941bd866657ac55d2e7a4091be3aef0f') in 0.105461 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.852708 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_133.asset
+  artifactKey: Guid(82d8395591a34794b924407c196be2cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_133.asset using Guid(82d8395591a34794b924407c196be2cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7158da7300c868910d89c621320e2cc1') in 0.022130 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_139.asset
+  artifactKey: Guid(10ec7fb3fde170d408f76073b2090e99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_139.asset using Guid(10ec7fb3fde170d408f76073b2090e99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03f551378b7ce47984ec794b3d6e1467') in 0.018862 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_146.asset
+  artifactKey: Guid(ee129f1603e2e2f4280505adba534652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_146.asset using Guid(ee129f1603e2e2f4280505adba534652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e97be4654f6472bb3656152389e70b17') in 0.020690 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_165.asset
+  artifactKey: Guid(3db88ef1403983b4984f0a6f3773cea7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_165.asset using Guid(3db88ef1403983b4984f0a6f3773cea7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83615c781293e6faf31798ac657cb362') in 0.021952 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_174.asset
+  artifactKey: Guid(a79d1f42b8a699e4c9e246e538e46d18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_174.asset using Guid(a79d1f42b8a699e4c9e246e538e46d18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc6c9dec70dcb91682a6ec04560f8e21') in 0.019240 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_169.asset
+  artifactKey: Guid(805952312f5861a43b8cce15acb44eef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_169.asset using Guid(805952312f5861a43b8cce15acb44eef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5037cb55348db274e5d976da2b4364e2') in 0.020189 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_173.asset
+  artifactKey: Guid(eacb5b4f7a8000d4d883e903717108f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_173.asset using Guid(eacb5b4f7a8000d4d883e903717108f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68d328ea248caebe40061b8951ebdf73') in 0.015669 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_157.asset
+  artifactKey: Guid(ec06d5e1b4ddf10469dd1e140411d398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_157.asset using Guid(ec06d5e1b4ddf10469dd1e140411d398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd169275b73387fb93fc2416e6920ffe5') in 0.019274 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_142.asset
+  artifactKey: Guid(3d7bafc52661a8a41a3674126dc938d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_142.asset using Guid(3d7bafc52661a8a41a3674126dc938d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37a441f22139fd26498cd63d9258f8cf') in 0.021491 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_147.asset
+  artifactKey: Guid(1b58b502d95fef546a2842106aa5cdf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_147.asset using Guid(1b58b502d95fef546a2842106aa5cdf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5805a5d68465be5c8a28137ec0835ae') in 0.022273 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_172.asset
+  artifactKey: Guid(4e578b22662a8c14ab7a2b3252f16984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_172.asset using Guid(4e578b22662a8c14ab7a2b3252f16984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec4309ef606318d9c9e8a33cc0fbe6f4') in 0.018479 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_160.asset
+  artifactKey: Guid(4e99bf2d9296dc54199e5f8569195fa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_160.asset using Guid(4e99bf2d9296dc54199e5f8569195fa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f1ed87b1f3380a7802ae023767798b2') in 0.016901 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_143.asset
+  artifactKey: Guid(d3cc9904dc6ecaa42a9625c4351c6c73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_143.asset using Guid(d3cc9904dc6ecaa42a9625c4351c6c73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27dc76bff92afe17b640a52b8519002a') in 0.019333 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_176.asset
+  artifactKey: Guid(fdf9960de0fdc8243be392f4b925582f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_176.asset using Guid(fdf9960de0fdc8243be392f4b925582f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f368041a56051f796a8b2e8f55400978') in 0.019096 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_153.asset
+  artifactKey: Guid(b144e06d296014f4b85757d1dea3a712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_153.asset using Guid(b144e06d296014f4b85757d1dea3a712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4043ac9886189d37adccab3377e5bed6') in 0.020001 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.212857 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_177.asset
+  artifactKey: Guid(c1143b6cebcfb1d4bbcc1c81bbd77600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_177.asset using Guid(c1143b6cebcfb1d4bbcc1c81bbd77600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69e5e8a41b076f9c430814913995786e') in 0.023854 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_182.asset
+  artifactKey: Guid(5506121a4c4caad4d9cc70bc9669c02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_182.asset using Guid(5506121a4c4caad4d9cc70bc9669c02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7028d92bd231e63a207855d66887d1f3') in 0.019653 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_197.asset
+  artifactKey: Guid(4ea9be1dd656f244bb1ef3f30a168a93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_197.asset using Guid(4ea9be1dd656f244bb1ef3f30a168a93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a30fada4808fe668a5a40e818335a8b6') in 0.020390 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_188.asset
+  artifactKey: Guid(23c5c5da37ddfeb41aa937cf3554bd1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_188.asset using Guid(23c5c5da37ddfeb41aa937cf3554bd1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77988d4e18a9f1abf64085bda67937fd') in 0.018655 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_208.asset
+  artifactKey: Guid(c442d8db8241bcd4780dc544cc540053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_208.asset using Guid(c442d8db8241bcd4780dc544cc540053) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46f672fa37aba691321584aef1f89bbc') in 0.018581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_220.asset
+  artifactKey: Guid(7fb7c536a91c8d1479cefef4cf12c83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_220.asset using Guid(7fb7c536a91c8d1479cefef4cf12c83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2da2aa6c9c6dcf2f8bcaa98994f68192') in 0.021153 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_181.asset
+  artifactKey: Guid(2234df35bba57fb4d83f7bc91bbc0c9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_181.asset using Guid(2234df35bba57fb4d83f7bc91bbc0c9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a101d7db6443b7632f147b1563a10a3') in 0.025560 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_185.asset
+  artifactKey: Guid(ae4cc748a98c4744cb9a05ca0620afa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_185.asset using Guid(ae4cc748a98c4744cb9a05ca0620afa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa6fcde7cdccc193171446efc924771f') in 0.019704 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_198.asset
+  artifactKey: Guid(db786d3f9133a5849a12ff12c524f24e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_198.asset using Guid(db786d3f9133a5849a12ff12c524f24e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf91df6eed9e630f6a979f57c2220b2a') in 0.017639 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_205.asset
+  artifactKey: Guid(0636d53d0eb623341a78c576758deee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_205.asset using Guid(0636d53d0eb623341a78c576758deee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '691ba65b5f7b7cee973e7306fdf1b1a9') in 0.019215 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_215.asset
+  artifactKey: Guid(97f771288f50ad349b6cb470ce4c9e0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_215.asset using Guid(97f771288f50ad349b6cb470ce4c9e0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53648ed5182337c6cede977031673ae9') in 0.019203 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_214.asset
+  artifactKey: Guid(22c52ac535445c3409b604b05c8a1587) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_214.asset using Guid(22c52ac535445c3409b604b05c8a1587) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af51d70d61314a2d13e8a354f4c22623') in 0.013864 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_201.asset
+  artifactKey: Guid(d39bb3211b0883f4d8f95ae58f0cf0b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_201.asset using Guid(d39bb3211b0883f4d8f95ae58f0cf0b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b279b4d04e38c493ed539aec54e72418') in 0.019465 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_216.asset
+  artifactKey: Guid(e0e4d664ead347e4a8be886201f8a165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/StoreAsset/Japanese Interior Essentials/Tiles/MainTileMapUnity_216.asset using Guid(e0e4d664ead347e4a8be886201f8a165) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e3d5449c9b0fe411f7be6ff927c0493') in 0.017532 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
