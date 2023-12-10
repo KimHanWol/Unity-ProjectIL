@@ -59,15 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\System\Talk\TalkData.cs" />
+    <Compile Include="Assets\Scripts\Object\Portal.cs" />
     <Compile Include="Assets\StoreAsset\TopDown 2D RPG BE3\ReadMe\Scripts\ReadmeBE3.cs" />
+    <Compile Include="Assets\Scripts\Object\Spawner.cs" />
     <Compile Include="Assets\StoreAsset\Simple 2D Platformer BE2\ReadMe\Scripts\ReadmeBE2.cs" />
     <Compile Include="Assets\Scripts\System\Talk\TalkManager.cs" />
     <Compile Include="Assets\Scripts\System\Talk\CSVReader.cs" />
+    <Compile Include="Assets\Scripts\Object\LFGameObject.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\System\QuestManager.cs" />
     <Compile Include="Assets\Scripts\System\QuestData.cs" />
     <Compile Include="Assets\Scripts\System\Item\ItemManager.cs" />
-    <Compile Include="Assets\Scripts\Object\JFGameObject.cs" />
     <Compile Include="Assets\Scripts\UI\Dialog\TypingAnimation.cs" />
     <Compile Include="Assets\Scripts\System\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Object\Character\Player\PlayerAction.cs" />

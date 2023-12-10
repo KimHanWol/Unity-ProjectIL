@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using Unity.VisualScripting;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,10 +51,27 @@ public class GameManager : MonoBehaviour
     public void Action(GameObject scanObj)
     {
         scanObject = scanObj;
-        JFGameObject JFGameObject = scanObject.GetComponent<JFGameObject>();
-        Talk(JFGameObject.id, JFGameObject.isNpc);
-
-        talkPanel.SetBool("isShow", isAction);
+        LFGameObject LFGameObject = scanObject.GetComponent<LFGameObject>();
+        if(LFGameObject != null)
+        {
+            switch(LFGameObject.lFGameObjectType)
+            {
+                case LFGameObjectType.None:
+                    UnityEngine.Debug.Log("the Scan Object Has None Type, Please Select Object's Type");
+                    break;
+                case LFGameObjectType.Object:
+                    Talk(LFGameObject.id, false);
+                    break;
+                case LFGameObjectType.NPC:
+                    Talk(LFGameObject.id, true);
+                    break;
+                case LFGameObjectType.Portal:
+                    MoveMap(LFGameObject);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void OpenItemUI()
@@ -65,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc)
     {
+        talkPanel.SetBool("isShow", isAction);
+
         int questTalkIndex = 0;
         string talkData = "";
 
@@ -127,6 +148,31 @@ public class GameManager : MonoBehaviour
 
         isAction = true;
         talkIndex++;
+    }
+
+    public void MoveMap(LFGameObject InScanObject)
+    {
+        if(InScanObject == null || InScanObject.lFGameObjectType != LFGameObjectType.Portal)
+        {
+            return;
+        }
+
+        Portal portalObject = (Portal)InScanObject;
+        if(portalObject == null)
+        {
+            return;
+        }
+
+        if(portalObject.SpawnObject == null)
+        {
+            return;
+        }
+
+        //Z축은 그대로
+        player.transform.position = new Vector3(
+            portalObject.SpawnObject.transform.position.x,
+            portalObject.SpawnObject.transform.position.y,
+            player.transform.position.z);
     }
 
     public void GameSave(int index)
