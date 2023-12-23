@@ -1,50 +1,116 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class TalkManager : MonoBehaviour
 {
-    Dictionary<int, string[]> talkData;
+    const int CSVDataSplitIndex = 10;
+
+    Dictionary<int, TalkData> talkData;
     Dictionary<int, Sprite> portraitData;
-
-
 
     public Sprite[] portraitArr;
 
     void Awake()
     {
-        talkData = new Dictionary<int, string[]>();
+        talkData = new Dictionary<int, TalkData>();
         portraitData = new Dictionary<int, Sprite>();
         GenerateData();
     }
 
     void GenerateData()
     {
-        List<TalkData> TalkDataList = new List<TalkData>();
         List<List<string>> CSVTalkData = CSVReader.GetSCVData("TalkDataCSV");
-        foreach(List<string> ListTalkData in CSVTalkData)
+        for(int i = 0; i < CSVTalkData.Count; i++)
         {
-            int ListTalkCount = ListTalkData.Count;
-            List<string> TalkContentsDataList = new List<string>();
-            for(int i = 2; i < ListTalkCount; i++) 
+            List<string> LineData = CSVTalkData[i];
+            List<Tuple<string, int>> TalkDialogDataList = new List<Tuple<string, int>>();
+
+
+            if (LineData.Count < CSVDataSplitIndex)
             {
-                TalkContentsDataList.Add(ListTalkData[i]);
+                continue;
             }
 
-            TalkDataList.Add(new TalkData(int.Parse(ListTalkData[0]), int.Parse(ListTalkData[1]), TalkContentsDataList.ToArray())); 
-        }
-
-        foreach(TalkData InTalkData in TalkDataList)
-        {
-            List<string> TextDataList = new List<string>();
-            foreach(TalkContentsData TalkDataString in InTalkData.TextData)
+            int TalkKey = -1;
+            int.TryParse(LineData[2], out TalkKey);
+            if(TalkKey < 0)
             {
-                TextDataList.Add(TalkDataString.TextData + ":" + TalkDataString.PortraitIndex);
+                continue;
             }
 
-            talkData.Add(InTalkData.ObjectId + InTalkData.QuestIndex, TextDataList.ToArray());
+            int PortraitIndex = 0;
+            int.TryParse(LineData[4], out PortraitIndex);
+
+            Tuple<string, int> DialogData = Tuple.Create<string, int>(LineData[3], PortraitIndex);
+            TalkDialogDataList.Add(DialogData);
+
+            //Check Dialog Data Loop
+            while (i + 1 < CSVTalkData.Count) 
+            {
+                List<string> NextLineData = CSVTalkData[i + 1];
+                if (NextLineData.Count < CSVDataSplitIndex)
+                {
+                    break;
+                }
+
+                int NextTalkKey = -1;
+                int.TryParse(NextLineData[2], out NextTalkKey);
+
+                //Dialog Data Not Continued
+                if(NextTalkKey > 0)
+                {
+                    break;
+                }
+
+                int PortraitNum = 0;
+                int.TryParse(NextLineData[4], out PortraitNum);
+
+                //Additional Dialong Data When Key Is Not Valid
+                Tuple<string, int> NextDialogData = Tuple.Create<string, int>(NextLineData[3], PortraitNum);
+                TalkDialogDataList.Add(NextDialogData);
+                i++;
+            }
+
+            int QuestIndex = -1;
+            int ObjectIndex = -1;
+            float TalkDelay = 0;
+            int SelectionKey = 0;
+            int AcquiredItemKey = 0;
+            int DisplayEnableItemKey = 0;
+            int Endingkey = 0;
+            int EffectSoundKey = 0;
+
+            bool bIsValidData =
+            int.TryParse(LineData[0], out QuestIndex) &&
+            int.TryParse(LineData[1], out ObjectIndex);
+
+            if (bIsValidData == false)
+            {
+                continue;
+            }
+
+            float.TryParse(LineData[4], out TalkDelay);
+            int.TryParse(LineData[5], out SelectionKey);
+            int.TryParse(LineData[6], out AcquiredItemKey);
+            int.TryParse(LineData[7], out DisplayEnableItemKey);
+            int.TryParse(LineData[8], out Endingkey);
+            int.TryParse(LineData[8], out EffectSoundKey);
+
+            talkData.Add(int.Parse(LineData[2]), new TalkData(
+                QuestIndex,
+                ObjectIndex,
+                TalkDialogDataList,
+                TalkDelay,
+                SelectionKey,
+                AcquiredItemKey,
+                DisplayEnableItemKey,
+                Endingkey,
+                EffectSoundKey
+                ));
         }
 
         portraitData.Add(1000 + 0, portraitArr[0]);
@@ -55,8 +121,15 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalk(int id, int talkIndex)
     {
+        if(id == 0)
+        {
+            return null;
+        }
+
         if(talkData.ContainsKey(id) == false)
         {
+            return null;
+
             if (talkData.ContainsKey(id - id % 10) == false)
             {
                 return GetTalk(id - id % 100, talkIndex); // Get First Talk
@@ -67,13 +140,13 @@ public class TalkManager : MonoBehaviour
             }
         }
 
-        if(talkIndex == talkData[id].Length)
+        if(talkIndex == talkData[id].DialogData.Count)
         {
             return null;
         }
         else
         {
-            return talkData[id][talkIndex];
+            return talkData[id].DialogData[talkIndex].Item1;
         }
     }
 

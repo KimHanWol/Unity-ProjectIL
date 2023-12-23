@@ -15,5 +15,6 @@ public enum LFGameObjectType
 public class LFGameObject : MonoBehaviour
 {
     public int id;
+    public string DisplayName;
     public LFGameObjectType lFGameObjectType;
 }

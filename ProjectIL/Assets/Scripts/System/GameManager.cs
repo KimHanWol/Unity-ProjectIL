@@ -84,8 +84,6 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc)
     {
-        talkPanel.SetBool("isShow", isAction);
-
         int questTalkIndex = 0;
         string talkData = "";
 
@@ -106,12 +104,29 @@ public class GameManager : MonoBehaviour
         //End Talk
         if(talkData == null) 
         {
-            isAction = false;
-            talkIndex = 0;
-            questText.text = questManager.CheckQuest(id);
-            cutSceneUI.SetActive(false);
-            return;
+            //대사 없는 사물
+            if (talkIndex == 0)
+            {
+                LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
+
+                if(ScanLFObject != null && ScanLFObject.DisplayName.Length > 0)
+                {
+                    talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
+                }
+                else
+                {
+                    EndTalk(id);
+                    return;
+                }
+            }
+            else
+            {
+                EndTalk(id);
+                return;
+            }
         }
+
+        talkPanel.SetBool("isShow", true);
 
         if (talkData.Split('&').Length > 1)
         {
@@ -150,7 +165,16 @@ public class GameManager : MonoBehaviour
         talkIndex++;
     }
 
-    public void MoveMap(LFGameObject InScanObject)
+    void EndTalk(int id)
+    {
+        isAction = false;
+        talkIndex = 0;
+        questText.text = questManager.CheckQuest(id);
+        cutSceneUI.SetActive(false);
+        talkPanel.SetBool("isShow", false);
+    }
+
+        public void MoveMap(LFGameObject InScanObject)
     {
         if(InScanObject == null || InScanObject.lFGameObjectType != LFGameObjectType.Portal)
         {
