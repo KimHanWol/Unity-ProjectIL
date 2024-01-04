@@ -40,7 +40,7 @@ public class QuestManager : MonoBehaviour
 
         if (questDictionary.ContainsKey(questId) == false)
         {
-            return "";
+            return "SceneEnd";
         }
 
         //다음 액션

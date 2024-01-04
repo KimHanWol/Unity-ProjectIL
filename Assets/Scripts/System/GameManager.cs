@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         GameLoad(0);
         questText.text = questManager.CheckQuest();
+        talkManager.InitializeTalkManager(SceneIndex);
     }
 
     void Update()
@@ -192,9 +194,15 @@ public class GameManager : MonoBehaviour
 
     void EndTalk(int id)
     {
+        questText.text = questManager.CheckQuest(id);
+        if(questText.text == "SceneEnd")
+        {
+            LoadNextScene();
+            return;
+        }
+
         isAction = false;
         talkIndex = 0;
-        questText.text = questManager.CheckQuest(id);
         cutSceneUI.SetActive(false);
         talkPanel.SetBool("isShow", isAction);
 
@@ -206,8 +214,6 @@ public class GameManager : MonoBehaviour
                 scanObject.gameObject.SetActive(false);
             }
         }
-
-
     }
 
     IEnumerator WaitTalkDelay(float duration)
@@ -293,5 +299,17 @@ public class GameManager : MonoBehaviour
     public void GameExit()
     {
         Application.Quit();
+    }
+
+    private int SceneIndex = 0;
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(++SceneIndex);
+    }
+
+    public int CurrentSceneIndex()
+    {
+        return SceneIndex;
     }
 }

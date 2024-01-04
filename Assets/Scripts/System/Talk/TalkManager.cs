@@ -14,16 +14,20 @@ public class TalkManager : MonoBehaviour
 
     public Sprite[] portraitArr;
 
+    public void InitializeTalkManager(int SceneIndex)
+    {
+        GenerateData(SceneIndex);
+    }
+
     void Awake()
     {
         talkData = new Dictionary<int, TalkData>();
         portraitData = new Dictionary<int, Sprite>();
-        GenerateData();
     }
 
-    void GenerateData()
+    void GenerateData(int SceneIndex)
     {
-        List<List<string>> CSVTalkData = CSVReader.GetSCVData("TalkDataCSV");
+        List<List<string>> CSVTalkData = CSVReader.GetSCVData("Day" + (SceneIndex + 1));
         for(int i = 0; i < CSVTalkData.Count; i++)
         {
             List<string> LineData = CSVTalkData[i];
@@ -156,7 +160,7 @@ public class TalkManager : MonoBehaviour
             //}
         }
 
-        if(talkIndex == talkData[id].DialogData.Count)
+        if(talkIndex >= talkData[id].DialogData.Count)
         {
             return null;
         }
