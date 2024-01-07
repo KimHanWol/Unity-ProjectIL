@@ -100,10 +100,11 @@ public class GameManager : MonoBehaviour
     {
         int questTalkIndex = 0;
         string talkData = "";
+        int talkDataId = id + questManager.questId;
 
         //Set Talk Data
         questTalkIndex = questManager.GetQuestTalkIndex(id);
-        talkData = talkManager.GetTalkText(id + questTalkIndex, talkIndex);
+        talkData = talkManager.GetTalkText(talkDataId, talkIndex);
 
         //If There Is Talk Delay
         //float TalkDelay = talkManager.GetTalkDelay(id + questTalkIndex, talkIndex);
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
         //}
 
         //It's Not For Current Quest
-        if (talkManager.IsTalkDataForCurrentQuest(id + questManager.GetQuestTalkIndex(id), questManager.questId) == false)
+        if (talkManager.IsTalkDataForCurrentQuest(talkDataId, questManager.questId) == false)
         {
             return false;
         }
@@ -301,7 +302,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    private int SceneIndex = 0;
+    public int SceneIndex = 0;
 
     public void LoadNextScene()
     {

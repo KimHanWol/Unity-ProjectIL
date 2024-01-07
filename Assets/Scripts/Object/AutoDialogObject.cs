@@ -9,6 +9,7 @@ public class AutoDialogObject : LFGameObject
         lFGameObjectType = LFGameObjectType.AutoDialog;
     }
 
+    public int QuestIndex;
     public int DialogKey;
     public bool IsNPC;
 
