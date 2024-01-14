@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -28,19 +29,14 @@ public class TalkManager : MonoBehaviour
     void GenerateData(int SceneIndex)
     {
         List<List<string>> CSVTalkData = CSVReader.GetSCVData("Day" + (SceneIndex + 1));
-        for(int i = 0; i < CSVTalkData.Count; i++)
+        int CurrentQuestIndex = 0;
+        int QuestActionIndex = 0;
+        for (int i = 0; i < CSVTalkData.Count; i++)
         {
             List<string> LineData = CSVTalkData[i];
             List<DialogData> TalkDialogDataList = new List<DialogData>();
 
             if (LineData.Count < CSVDataSplitIndex)
-            {
-                continue;
-            }
-
-            int TalkKey = -1;
-            int.TryParse(LineData[2], out TalkKey);
-            if(TalkKey < 0)
             {
                 continue;
             }
@@ -100,6 +96,16 @@ public class TalkManager : MonoBehaviour
             int.TryParse(LineData[0], out QuestIndex) &&
             int.TryParse(LineData[1], out ObjectIndex);
 
+            if(CurrentQuestIndex != QuestIndex)
+            {
+                CurrentQuestIndex = QuestIndex;
+                QuestActionIndex = 0;
+            }
+            else
+            {
+                QuestActionIndex++;
+            }
+
             if (bIsValidData == false)
             {
                 continue;
@@ -111,8 +117,11 @@ public class TalkManager : MonoBehaviour
             int.TryParse(LineData[10], out Endingkey);
             int.TryParse(LineData[11], out EffectSoundKey);
 
-            talkData.Add(int.Parse(LineData[2]), new TalkData(
+            int TalkKey = QuestIndex + ObjectIndex;
+
+            talkData.Add(TalkKey, new TalkData(
                 QuestIndex,
+                QuestActionIndex,
                 ObjectIndex,
                 TalkDialogDataList,
                 SelectionKey,
@@ -139,7 +148,7 @@ public class TalkManager : MonoBehaviour
         return talkData[talkDataId].QuestIndex == questId;
     }
 
-    public string GetTalkText(int id, int talkIndex)
+    public string GetTalkText(int id, int talkIndex, int questTalkIndex)
     {
         if(id == 0)
         {
@@ -160,14 +169,17 @@ public class TalkManager : MonoBehaviour
             //}
         }
 
-        if(talkIndex >= talkData[id].DialogData.Count)
+        if (talkIndex >= talkData[id].DialogData.Count)
         {
             return null;
         }
-        else
+
+        if (talkData[id].QuestActionIndex + talkData[id].QuestIndex == questTalkIndex)
         {
             return talkData[id].DialogData[talkIndex].DialogText;
         }
+
+        return null;
     }
 
     public float GetTalkDelay(int id, int talkIndex)

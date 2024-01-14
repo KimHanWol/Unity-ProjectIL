@@ -7,7 +7,7 @@ public class QuestManager : MonoBehaviour
 {
     public int questId;
     public int questActionIndex;
-    public GameObject[] questObject;
+    public GameObject[] questObjects;
 
     [SerializeField]
     private List<QuestData> questList;
@@ -22,8 +22,10 @@ public class QuestManager : MonoBehaviour
 
     void GenerateData()
     {
+        int questIdIndex = 1;
         foreach (QuestData data in questList)
         {
+            data.questId = 1000 * questIdIndex++;
             questDictionary.Add(data.questId, data);
         }
     }
@@ -35,9 +37,6 @@ public class QuestManager : MonoBehaviour
 
     public string CheckQuest(int id)
     {
-        //퀘스트 오브젝트 관리
-        ControlObject();
-
         if (questDictionary.ContainsKey(questId) == false)
         {
             return "SceneEnd";
@@ -60,6 +59,9 @@ public class QuestManager : MonoBehaviour
             }
         }
 
+        //퀘스트 오브젝트 관리
+        ControlObject();
+
         return questDictionary[questId].questName;
     }
 
@@ -76,7 +78,7 @@ public class QuestManager : MonoBehaviour
 
     bool NextQuest()
     {
-        questId += 10;
+        questId += 1000;
         questActionIndex = 0;
 
         //All Clear Quest On This Scene 
@@ -90,16 +92,20 @@ public class QuestManager : MonoBehaviour
 
     public void ControlObject()
     {
-        switch (questId + questActionIndex)
+        foreach(GameObject questObject in questObjects)
         {
-            case 10:
-                break;
-            case 20:
-                questObject[0].SetActive(true);
-                break;
-            case 21:
-                questObject[0].SetActive(false);
-                break;
+            AutoDialogObject AutoDialogObject = questObject.GetComponent<AutoDialogObject>();
+            if (AutoDialogObject != null)
+            {
+                if (AutoDialogObject.QuestIndex + AutoDialogObject.DialogKey  == questId + questActionIndex + 1)
+                {
+                    questObject.SetActive(true);
+                }
+                else
+                {
+                    questObject.SetActive(false);
+                }
+            }
         }
     }
 }

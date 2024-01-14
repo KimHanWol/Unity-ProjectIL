@@ -9,6 +9,7 @@ public class PlayerAction : MonoBehaviour
     public GameManager manager;
 
     Rigidbody2D rigid;
+    BoxCollider2D boxCollider2D;
     Animator anim;
     float h;
     float v;
@@ -21,6 +22,7 @@ public class PlayerAction : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         dirVec = Vector3.down;
     }
 
@@ -83,20 +85,30 @@ public class PlayerAction : MonoBehaviour
         Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) : new Vector2(0, v);
         rigid.velocity = moveVec * Speed;
 
-        Debug.DrawRay(rigid.position, dirVec * 0.7f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 0.7f, LayerMask.GetMask("Object"));
+        Vector2 CharacterCenter = rigid.position + boxCollider2D.offset;
 
-        if (rayHit.collider != null)
-        {
-            ScanObject = rayHit.collider.gameObject;
-            manager.scanObject = ScanObject;
+        Debug.DrawRay(CharacterCenter, dirVec * 0.7f, new Color(0, 1, 0));
+        RaycastHit2D[] rayHitArray = Physics2D.RaycastAll(CharacterCenter, dirVec, 0.7f, LayerMask.GetMask("Object"));
 
-            CheckAutoInteractionForScanObject();
-        }
-        else
+        foreach(RaycastHit2D rayHit in rayHitArray)
         {
-            ScanObject = null;
+            if(rayHit.collider != null)
+            {
+                GameObject rayHitObject = rayHit.collider.gameObject;
+                if (rayHitObject != null)
+                {
+                    if(rayHitObject.GetComponent<LFGameObject>() != null)
+                    {
+                        ScanObject = rayHit.collider.gameObject;
+                        manager.scanObject = ScanObject;
+
+                        CheckAutoInteractionForScanObject();
+                        return;
+                    }
+                }
+            }
         }
+        ScanObject = null;
     }
 
     void CheckAutoInteractionForScanObject()

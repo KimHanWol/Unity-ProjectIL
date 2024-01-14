@@ -7,6 +7,7 @@ using UnityEngine;
 public class TalkData
 {
     public int QuestIndex;
+    public int QuestActionIndex;
     public int ObjectId;
     public List<DialogData> DialogData;
     public int SelectionKey;
@@ -15,9 +16,10 @@ public class TalkData
     public int EndingKey;
     public int EffectSoundKey;
 
-    public TalkData(int QuestIndex, int ObjectId, List<DialogData> DialogData, int selectionKey, int acquiredItemKey, int displayEnableItemKey, int endingKey, int effectSoundKey)
+    public TalkData(int QuestIndex, int QuestActionIndex, int ObjectId, List<DialogData> DialogData, int selectionKey, int acquiredItemKey, int displayEnableItemKey, int endingKey, int effectSoundKey)
     {
         this.QuestIndex = QuestIndex;
+        this.QuestActionIndex = QuestActionIndex;
         this.ObjectId = ObjectId;
         this.DialogData = DialogData;
         this.SelectionKey = selectionKey;

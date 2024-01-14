@@ -96,15 +96,24 @@ public class GameManager : MonoBehaviour
         itemManager.UpdateItemBags();
     }
 
-    public bool Talk(int id, bool isNpc)
+    public bool Talk(int id,  bool isNpc)
     {
+        LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
+        if(ScanLFObject == null)
+        {
+            return false;
+        }
+
         int questTalkIndex = 0;
-        string talkData = "";
         int talkDataId = id + questManager.questId;
 
         //Set Talk Data
         questTalkIndex = questManager.GetQuestTalkIndex(id);
-        talkData = talkManager.GetTalkText(talkDataId, talkIndex);
+
+        string talkData = "";
+        //ScanLFObject.id == id
+        talkData = talkManager.GetTalkText(talkDataId, talkIndex, questTalkIndex);
+
 
         //If There Is Talk Delay
         //float TalkDelay = talkManager.GetTalkDelay(id + questTalkIndex, talkIndex);
@@ -121,7 +130,6 @@ public class GameManager : MonoBehaviour
         }
 
         isAction = true;
-        talkPanel.SetBool("isShow", isAction);
 
         if(TypingAnimation.bIsPlaying)
         {
@@ -135,21 +143,28 @@ public class GameManager : MonoBehaviour
             //대사 없는 사물
             if (talkIndex == 0)
             {
-                LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
-
                 if (ScanLFObject != null && ScanLFObject.DisplayName.Length > 0)
                 {
                     talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
                 }
                 else
                 {
-                    EndTalk(id);
+                    EndTalk(id, false);
                     return false;
                 }
             }
             else
             {
-                EndTalk(id);
+                AutoDialogObject autoDialogObject = scanObject.GetComponent<AutoDialogObject>();
+                if(autoDialogObject != null)
+                {
+                    if (autoDialogObject.QuestIndex != questManager.questId)
+                    {
+                        return false;
+                    }
+                }
+
+                EndTalk(id, true);
                 return true;
             }
         }
@@ -187,34 +202,39 @@ public class GameManager : MonoBehaviour
             }
         }
 
+
         isAction = true;
+        talkPanel.SetBool("isShow", isAction);
         talkIndex++;
 
         return true;
     }
 
-    void EndTalk(int id)
+    void EndTalk(int id, bool bSucceed)
     {
-        questText.text = questManager.CheckQuest(id);
-        if(questText.text == "SceneEnd")
+        if(bSucceed == true)
         {
-            LoadNextScene();
-            return;
+            questText.text = questManager.CheckQuest(id);
+            if(questText.text == "SceneEnd")
+            {
+                LoadNextScene();
+                return;
+            }
+
+            if (scanObject != null)
+            {
+                LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
+                if (ScanLFObject != null && ScanLFObject.lFGameObjectType == LFGameObjectType.AutoDialog)
+                {
+                    scanObject.gameObject.SetActive(false);
+                }
+            }
         }
 
         isAction = false;
         talkIndex = 0;
         cutSceneUI.SetActive(false);
         talkPanel.SetBool("isShow", isAction);
-
-        if (scanObject != null)
-        {
-            LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
-            if(ScanLFObject != null && ScanLFObject.lFGameObjectType == LFGameObjectType.AutoDialog)
-            {
-                scanObject.gameObject.SetActive(false);
-            }
-        }
     }
 
     IEnumerator WaitTalkDelay(float duration)
