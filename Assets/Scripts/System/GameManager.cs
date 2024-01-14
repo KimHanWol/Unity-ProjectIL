@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         //It's Not For Current Quest
         if (talkManager.IsTalkDataForCurrentQuest(talkDataId, questManager.questId) == false)
         {
-            return false;
+            //return false;
         }
 
         isAction = true;
@@ -145,7 +145,36 @@ public class GameManager : MonoBehaviour
             {
                 if (ScanLFObject != null && ScanLFObject.DisplayName.Length > 0)
                 {
-                    talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
+                    if (ScanLFObject.DisplayName.Length > 0)
+                    {
+                        talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
+                    }
+
+                    List<string> interactionTalkDataList = new List<string>();
+                    foreach(InteractionTalkData scanTalkData in ScanLFObject.InteractionTalkData)
+                    {
+                        if(scanTalkData.TalkKey == questTalkIndex)
+                        {
+                            interactionTalkDataList = scanTalkData.TalkDataList;
+                            break;
+                        }
+                    }
+
+                    if (interactionTalkDataList.Count <= 0)
+                    {
+                        interactionTalkDataList = ScanLFObject.DefaultInteractionTalkData;
+                    }
+
+                    if (interactionTalkDataList.Count > 0 &&
+                        interactionTalkDataList.Count > ScanLFObject.TalkIndex)
+                    {
+                        talkData = interactionTalkDataList[ScanLFObject.TalkIndex];
+                        ScanLFObject.TalkIndex++;
+                    }
+                    else
+                    {
+                        ScanLFObject.TalkIndex = 0;
+                    }
                 }
                 else
                 {

@@ -4441,6 +4441,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: InteractionTalkData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: DefaultInteractionTalkData.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: DefaultInteractionTalkData.Array.data[0]
+      value: "\uADF8\uC758 \uC637\uC774 \uB0A8\uC544\uC788\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: DefaultInteractionTalkData.Array.data[1]
+      value: "\uC544\uC9C1 \uADF8\uC758 \uD5A5\uAE30\uAC00 \uB09C\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: InteractionTalkData.Array.data[0].TalkKey
+      value: 1002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: InteractionTalkData.Array.data[0].TalkDataList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: InteractionTalkData.Array.data[0].TalkDataList.Array.data[0]
+      value: "\uC11C\uB78D \uC548\uC5D0\uB294 \uADF8\uC758 \uC637\uC774 \uC788\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348083968696801459, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+      propertyPath: InteractionTalkData.Array.data[0].TalkDataList.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2418989298977476107, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
       propertyPath: m_Layer
       value: 0
