@@ -50,6 +50,9 @@ MonoBehaviour:
   id: 312
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2179131757188757227
 Tilemap:
   m_ObjectHideFlags: 0
@@ -304,6 +307,9 @@ MonoBehaviour:
   id: 402
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2358484911291070899
 Tilemap:
   m_ObjectHideFlags: 0
@@ -486,7 +492,6 @@ GameObject:
   - component: {fileID: 548993639000701033}
   - component: {fileID: 3657146342443458382}
   - component: {fileID: 3191599149844211156}
-  - component: {fileID: 7190767681055670851}
   m_Layer: 6
   m_Name: Carpet (1)
   m_TagString: Untagged
@@ -524,6 +529,9 @@ MonoBehaviour:
   id: 100
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3657146342443458382
 Tilemap:
   m_ObjectHideFlags: 0
@@ -683,51 +691,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!61 &7190767681055670851
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55356878158834190}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 2.16}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &123317648142337027
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +805,9 @@ MonoBehaviour:
   id: 316
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4064780319065948362
 Tilemap:
   m_ObjectHideFlags: 0
@@ -1130,6 +1096,9 @@ MonoBehaviour:
   id: 501
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5192229700193984468
 Tilemap:
   m_ObjectHideFlags: 0
@@ -1442,6 +1411,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &438897091064686544
 GameObject:
@@ -1493,6 +1465,9 @@ MonoBehaviour:
   id: 311
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2026990482260260995
 Tilemap:
   m_ObjectHideFlags: 0
@@ -1787,6 +1762,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &498784859604397863
 GameObject:
@@ -1838,6 +1816,9 @@ MonoBehaviour:
   id: 509
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6988286163693761913
 Tilemap:
   m_ObjectHideFlags: 0
@@ -2049,6 +2030,9 @@ MonoBehaviour:
   id: 100
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4097552026243780064
 Tilemap:
   m_ObjectHideFlags: 0
@@ -2304,6 +2288,9 @@ MonoBehaviour:
   id: 308
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8007303644237971867
 Tilemap:
   m_ObjectHideFlags: 0
@@ -2598,6 +2585,9 @@ MonoBehaviour:
   id: 319
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5156792932828463836
 Tilemap:
   m_ObjectHideFlags: 0
@@ -2842,6 +2832,9 @@ MonoBehaviour:
   id: 205
   DisplayName: "\uD654\uBD84"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2176582169996049821
 Tilemap:
   m_ObjectHideFlags: 0
@@ -3986,6 +3979,9 @@ MonoBehaviour:
   id: 210
   DisplayName: "\uD2F0\uBE44"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8095909058591160703
 Tilemap:
   m_ObjectHideFlags: 0
@@ -5517,6 +5513,9 @@ MonoBehaviour:
   id: 604
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3157930548067942819
 Tilemap:
   m_ObjectHideFlags: 0
@@ -5755,6 +5754,9 @@ MonoBehaviour:
   id: 117
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8918733755102494448
 Tilemap:
   m_ObjectHideFlags: 0
@@ -6331,6 +6333,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 1
 --- !u!1 &1209941234345504512
 GameObject:
@@ -6382,6 +6387,9 @@ MonoBehaviour:
   id: 119
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8587070994729669883
 Tilemap:
   m_ObjectHideFlags: 0
@@ -6807,6 +6815,9 @@ MonoBehaviour:
   id: 116
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4106510419999386015
 Tilemap:
   m_ObjectHideFlags: 0
@@ -7210,6 +7221,9 @@ MonoBehaviour:
   id: 111
   DisplayName: "VR \uAE30\uAE30"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8530322799188909013
 Tilemap:
   m_ObjectHideFlags: 0
@@ -7454,6 +7468,9 @@ MonoBehaviour:
   id: 301
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5274647307778767561
 Tilemap:
   m_ObjectHideFlags: 0
@@ -8127,6 +8144,9 @@ MonoBehaviour:
   id: 506
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5977346434656687405
 Tilemap:
   m_ObjectHideFlags: 0
@@ -8356,6 +8376,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2004870153753756627
 Tilemap:
   m_ObjectHideFlags: 0
@@ -8531,6 +8554,9 @@ MonoBehaviour:
   id: 107
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1467579989375474770
 Tilemap:
   m_ObjectHideFlags: 0
@@ -8912,6 +8938,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 5587844828887882201}
 --- !u!1 &2118965208597409966
 GameObject:
@@ -8963,6 +8992,9 @@ MonoBehaviour:
   id: 102
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5603210895578083329
 Tilemap:
   m_ObjectHideFlags: 0
@@ -9193,6 +9225,9 @@ MonoBehaviour:
   id: 323
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3839391670630498494
 Tilemap:
   m_ObjectHideFlags: 0
@@ -9608,6 +9643,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 224425399512356407}
 --- !u!1 &2195124062313719787
 GameObject:
@@ -9659,6 +9697,9 @@ MonoBehaviour:
   id: 318
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1432453971101530559
 Tilemap:
   m_ObjectHideFlags: 0
@@ -10668,6 +10709,9 @@ MonoBehaviour:
   id: 503
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6358384531252449709
 Tilemap:
   m_ObjectHideFlags: 0
@@ -11127,6 +11171,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 4347570336986368067}
 --- !u!1 &2698175347693074846
 GameObject:
@@ -11178,6 +11225,9 @@ MonoBehaviour:
   id: 322
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3179255892143197927
 Tilemap:
   m_ObjectHideFlags: 0
@@ -11432,6 +11482,9 @@ MonoBehaviour:
   id: 108
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &617821261384079143
 Tilemap:
   m_ObjectHideFlags: 0
@@ -11652,6 +11705,9 @@ MonoBehaviour:
   id: 308
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4187933323270362367
 Tilemap:
   m_ObjectHideFlags: 0
@@ -11924,6 +11980,9 @@ MonoBehaviour:
   id: 100
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5707939151130913261
 Tilemap:
   m_ObjectHideFlags: 0
@@ -12179,6 +12238,9 @@ MonoBehaviour:
   id: 504
   DisplayName: "\uCC3D\uBB38"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1050281679139338634
 Tilemap:
   m_ObjectHideFlags: 0
@@ -12399,6 +12461,9 @@ MonoBehaviour:
   id: 106
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5179270866241068863
 Tilemap:
   m_ObjectHideFlags: 0
@@ -12629,6 +12694,9 @@ MonoBehaviour:
   id: 608
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3361308932085366378
 Tilemap:
   m_ObjectHideFlags: 0
@@ -12877,6 +12945,9 @@ MonoBehaviour:
   id: 204
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &340853674291632163
 Tilemap:
   m_ObjectHideFlags: 0
@@ -13157,6 +13228,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &3002802204038322070
 GameObject:
@@ -13170,7 +13244,6 @@ GameObject:
   - component: {fileID: 9113587867353568735}
   - component: {fileID: 5928782066712871251}
   - component: {fileID: 2042292173892634129}
-  - component: {fileID: 639038078473565166}
   m_Layer: 6
   m_Name: Carpet
   m_TagString: Untagged
@@ -13208,6 +13281,9 @@ MonoBehaviour:
   id: 100
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5928782066712871251
 Tilemap:
   m_ObjectHideFlags: 0
@@ -13367,51 +13443,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!61 &639038078473565166
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3002802204038322070}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 2.16}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &3017813980371234746
 GameObject:
   m_ObjectHideFlags: 0
@@ -13919,6 +13950,9 @@ MonoBehaviour:
   id: 317
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4966591239420055003
 Tilemap:
   m_ObjectHideFlags: 0
@@ -14173,6 +14207,9 @@ MonoBehaviour:
   id: 206
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5106922410179510615
 Tilemap:
   m_ObjectHideFlags: 0
@@ -14648,6 +14685,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &3592502450266862594
 GameObject:
@@ -14783,6 +14823,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &3668233419980147757
 GameObject:
@@ -16650,6 +16693,9 @@ MonoBehaviour:
   id: 114
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6542411196460837238
 Tilemap:
   m_ObjectHideFlags: 0
@@ -17041,6 +17087,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 8359730646343648112}
 --- !u!1 &4307846110329117037
 GameObject:
@@ -17131,6 +17180,9 @@ MonoBehaviour:
   id: 105
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7414816166018404325
 Tilemap:
   m_ObjectHideFlags: 0
@@ -17361,6 +17413,9 @@ MonoBehaviour:
   id: 605
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4998734303376502513
 Tilemap:
   m_ObjectHideFlags: 0
@@ -17599,6 +17654,9 @@ MonoBehaviour:
   id: 701
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6236102611453371436
 Tilemap:
   m_ObjectHideFlags: 0
@@ -18665,6 +18723,9 @@ MonoBehaviour:
   id: 303
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1594124054361294980
 Tilemap:
   m_ObjectHideFlags: 0
@@ -18931,6 +18992,9 @@ MonoBehaviour:
   id: 510
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1760385009759507606
 Tilemap:
   m_ObjectHideFlags: 0
@@ -19349,6 +19413,9 @@ MonoBehaviour:
   id: 601
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7835355318761729958
 Tilemap:
   m_ObjectHideFlags: 0
@@ -22045,6 +22112,9 @@ MonoBehaviour:
   id: 121
   DisplayName: "\uC0AC\uC9C4"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3794469546540687674
 Tilemap:
   m_ObjectHideFlags: 0
@@ -22283,6 +22353,9 @@ MonoBehaviour:
   id: 310
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7009859514540195692
 Tilemap:
   m_ObjectHideFlags: 0
@@ -22557,6 +22630,9 @@ MonoBehaviour:
   id: 222
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3846203113057516536
 Tilemap:
   m_ObjectHideFlags: 0
@@ -22948,6 +23024,9 @@ MonoBehaviour:
   id: 320
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1299773728163499312
 Tilemap:
   m_ObjectHideFlags: 0
@@ -23192,6 +23271,9 @@ MonoBehaviour:
   id: 211
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2793248077643963628
 Tilemap:
   m_ObjectHideFlags: 0
@@ -23422,6 +23504,9 @@ MonoBehaviour:
   id: 321
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1210279829740495351
 Tilemap:
   m_ObjectHideFlags: 0
@@ -23700,6 +23785,9 @@ MonoBehaviour:
   id: 325
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3249652331497200733
 Tilemap:
   m_ObjectHideFlags: 0
@@ -23978,6 +24066,9 @@ MonoBehaviour:
   id: 505
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8307113258590374907
 Tilemap:
   m_ObjectHideFlags: 0
@@ -24198,6 +24289,9 @@ MonoBehaviour:
   id: 120
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2787007452138187888
 Tilemap:
   m_ObjectHideFlags: 0
@@ -24589,6 +24683,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 7316327882346600019}
 --- !u!1 &5564673664855084278
 GameObject:
@@ -24692,6 +24789,9 @@ MonoBehaviour:
   id: 314
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6398237522014026007
 Tilemap:
   m_ObjectHideFlags: 0
@@ -24891,6 +24991,9 @@ MonoBehaviour:
   id: 207
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6057528199382114732
 Tilemap:
   m_ObjectHideFlags: 0
@@ -25768,6 +25871,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &5754077006353622357
 GameObject:
@@ -25820,6 +25926,9 @@ MonoBehaviour:
   id: 208
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7505640114949493598
 Tilemap:
   m_ObjectHideFlags: 0
@@ -26147,6 +26256,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &5817686108294300429
 GameObject:
@@ -28148,6 +28260,9 @@ MonoBehaviour:
   id: 203
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8606119881626601839
 Tilemap:
   m_ObjectHideFlags: 0
@@ -28378,6 +28493,9 @@ MonoBehaviour:
   id: 112
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &188690919664396172
 Tilemap:
   m_ObjectHideFlags: 0
@@ -29003,6 +29121,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 170610463519472255}
 --- !u!1 &6136413026948444174
 GameObject:
@@ -29215,6 +29336,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 7821595520630343661}
 --- !u!1 &6150168791169759818
 GameObject:
@@ -29297,6 +29421,9 @@ MonoBehaviour:
   id: 110
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3584291714123274436
 Tilemap:
   m_ObjectHideFlags: 0
@@ -29517,6 +29644,9 @@ MonoBehaviour:
   id: 602
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6881180340510586495
 Tilemap:
   m_ObjectHideFlags: 0
@@ -29747,6 +29877,9 @@ MonoBehaviour:
   id: 307
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2536530425679294800
 Tilemap:
   m_ObjectHideFlags: 0
@@ -29967,6 +30100,9 @@ MonoBehaviour:
   id: 309
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &9002517007556810612
 Tilemap:
   m_ObjectHideFlags: 0
@@ -30221,6 +30357,9 @@ MonoBehaviour:
   id: 404
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1425451719762870237
 Tilemap:
   m_ObjectHideFlags: 0
@@ -30612,6 +30751,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 482868739766996345}
 --- !u!1 &6467265811565149790
 GameObject:
@@ -30696,6 +30838,9 @@ MonoBehaviour:
   id: 118
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &196034887620613074
 Tilemap:
   m_ObjectHideFlags: 0
@@ -30967,6 +31112,9 @@ MonoBehaviour:
   id: 207
   DisplayName: "\uC758\uC790"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3225120498433447682
 Tilemap:
   m_ObjectHideFlags: 0
@@ -31406,6 +31554,9 @@ MonoBehaviour:
   id: 304
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1355345305901612909
 Tilemap:
   m_ObjectHideFlags: 0
@@ -31684,6 +31835,9 @@ MonoBehaviour:
   id: 203
   DisplayName: "\uCC45\uC0C1"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2991628364175303514
 Tilemap:
   m_ObjectHideFlags: 0
@@ -32150,6 +32304,9 @@ MonoBehaviour:
   id: 104
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1760266651498196506
 Tilemap:
   m_ObjectHideFlags: 0
@@ -32380,6 +32537,9 @@ MonoBehaviour:
   id: 313
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7828070127219262231
 Tilemap:
   m_ObjectHideFlags: 0
@@ -32795,6 +32955,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 1359884274435498964}
 --- !u!1 &7166465695589521848
 GameObject:
@@ -32896,6 +33059,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &7211037738027200230
 GameObject:
@@ -32947,6 +33113,9 @@ MonoBehaviour:
   id: 403
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3372852990147086276
 Tilemap:
   m_ObjectHideFlags: 0
@@ -33208,6 +33377,9 @@ MonoBehaviour:
   id: 307
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1044260477005335335
 Tilemap:
   m_ObjectHideFlags: 0
@@ -33452,6 +33624,9 @@ MonoBehaviour:
   id: 100
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1896999948027361037
 Tilemap:
   m_ObjectHideFlags: 0
@@ -33697,6 +33872,9 @@ MonoBehaviour:
   id: 305
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2058285219133820070
 Tilemap:
   m_ObjectHideFlags: 0
@@ -34578,6 +34756,9 @@ MonoBehaviour:
   id: 405
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3398874626033941328
 Tilemap:
   m_ObjectHideFlags: 0
@@ -34798,6 +34979,9 @@ MonoBehaviour:
   id: 115
   DisplayName: "\uCC45\uC0C1"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4535456016217323358
 Tilemap:
   m_ObjectHideFlags: 0
@@ -35036,6 +35220,9 @@ MonoBehaviour:
   id: 103
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &4939637994398184997
 Tilemap:
   m_ObjectHideFlags: 0
@@ -35266,6 +35453,9 @@ MonoBehaviour:
   id: 302
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6506662961352262529
 Tilemap:
   m_ObjectHideFlags: 0
@@ -35510,6 +35700,9 @@ MonoBehaviour:
   id: 206
   DisplayName: "\uCEF4\uD4E8\uD130"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7925354673651599677
 Tilemap:
   m_ObjectHideFlags: 0
@@ -35764,6 +35957,9 @@ MonoBehaviour:
   id: 306
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3881041257892997521
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36008,6 +36204,9 @@ MonoBehaviour:
   id: 101
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7395724218698546088
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36269,6 +36468,9 @@ MonoBehaviour:
   id: 324
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8419538266658424915
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36513,6 +36715,9 @@ MonoBehaviour:
   id: 606
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &794598464732986508
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36808,6 +37013,9 @@ MonoBehaviour:
   id: 607
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3669898725381770194
 Tilemap:
   m_ObjectHideFlags: 0
@@ -37189,6 +37397,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &8177867237689266189
 GameObject:
@@ -37290,6 +37501,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &8190599957951912224
 GameObject:
@@ -37374,6 +37588,9 @@ MonoBehaviour:
   id: 315
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &7021192943631914583
 Tilemap:
   m_ObjectHideFlags: 0
@@ -37744,6 +37961,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 3175212865818176900}
 --- !u!1 &8316964953047185165
 GameObject:
@@ -37795,6 +38015,9 @@ MonoBehaviour:
   id: 202
   DisplayName: "\uC18C\uD30C"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6786309761615582610
 Tilemap:
   m_ObjectHideFlags: 0
@@ -38099,6 +38322,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 0
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnDirection: 0
 --- !u!1 &8326926123534941433
 GameObject:
@@ -38359,6 +38585,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 6638779110167315198}
 --- !u!1 &8423719695651973155
 GameObject:
@@ -38476,6 +38705,9 @@ MonoBehaviour:
   id: 204
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &983669983699586766
 Tilemap:
   m_ObjectHideFlags: 0
@@ -38937,6 +39169,9 @@ MonoBehaviour:
   id: 401
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &3473277206585497308
 Tilemap:
   m_ObjectHideFlags: 0
@@ -39112,6 +39347,9 @@ MonoBehaviour:
   id: 502
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5978180348759155109
 Tilemap:
   m_ObjectHideFlags: 0
@@ -39342,6 +39580,9 @@ MonoBehaviour:
   id: 109
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8188869709781147523
 Tilemap:
   m_ObjectHideFlags: 0
@@ -39562,6 +39803,9 @@ MonoBehaviour:
   id: 603
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &6307092854519203429
 Tilemap:
   m_ObjectHideFlags: 0
@@ -40032,6 +40276,9 @@ MonoBehaviour:
   id: 511
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &1891429876779081866
 Tilemap:
   m_ObjectHideFlags: 0
@@ -40286,6 +40533,9 @@ MonoBehaviour:
   id: 113
   DisplayName: 
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5300580824902526707
 Tilemap:
   m_ObjectHideFlags: 0
@@ -41228,6 +41478,9 @@ MonoBehaviour:
   id: 201
   DisplayName: "\uC18C\uD30C"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &2667351717600480443
 Tilemap:
   m_ObjectHideFlags: 0
@@ -41502,6 +41755,9 @@ MonoBehaviour:
   id: 205
   DisplayName: "\uCC45\uC7A5"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &8578443413692317280
 Tilemap:
   m_ObjectHideFlags: 0
@@ -41732,6 +41988,9 @@ MonoBehaviour:
   id: 209
   DisplayName: "\uD56D\uC544\uB9AC"
   lFGameObjectType: 1
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
 --- !u!1839735485 &5128017863014212148
 Tilemap:
   m_ObjectHideFlags: 0
@@ -42181,6 +42440,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 3
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   SpawnObject: {fileID: 6205904494359232127}
 --- !u!1 &9158111787318990337
 GameObject:

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3465225568248078644}
   - component: {fileID: 721335682924367954}
   - component: {fileID: 6896774257745319910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AutoDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +93,9 @@ MonoBehaviour:
   id: 0
   DisplayName: 
   lFGameObjectType: 5
+  TalkIndex: 0
+  DefaultInteractionTalkData: []
+  InteractionTalkData: []
   QuestIndex: 0
   DialogKey: 0
   IsNPC: 0

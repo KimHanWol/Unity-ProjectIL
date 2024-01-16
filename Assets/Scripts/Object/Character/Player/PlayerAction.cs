@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -108,7 +109,11 @@ public class PlayerAction : MonoBehaviour
                 }
             }
         }
-        ScanObject = null;
+
+        if(rayHitArray.Length <= 0)
+        {
+            ScanObject = null;
+        }
     }
 
     void CheckAutoInteractionForScanObject()
