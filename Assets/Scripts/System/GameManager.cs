@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     public bool Talk(int id,  bool isNpc)
     {
-        LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
+         LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
         if(ScanLFObject == null)
         {
             return false;

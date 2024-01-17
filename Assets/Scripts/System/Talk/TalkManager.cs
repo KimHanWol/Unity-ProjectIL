@@ -174,7 +174,7 @@ public class TalkManager : MonoBehaviour
             return null;
         }
 
-        if (talkData[id].QuestActionIndex + talkData[id].QuestIndex == questTalkIndex)
+        //if (talkData[id].QuestActionIndex + talkData[id].QuestIndex == questTalkIndex)
         {
             return talkData[id].DialogData[talkIndex].DialogText;
         }
