@@ -50,7 +50,7 @@ public class TalkManager : MonoBehaviour
 
             string CutsceneKey = LineData[6];
             string AnimationKey = LineData[7];
-            string EffectSoundKey = LineData[8];
+            string EffectSoundKey = LineData[8].Split("\r")[0];
 
             TalkDialogDataList.Add(
                 new DialogData(
@@ -89,7 +89,7 @@ public class TalkManager : MonoBehaviour
 
                 string NextCutsceneKey = NextLineData[6];
                 string NextAnimationKey = NextLineData[7];
-                string NextEffectSoundKey = NextLineData[8];
+                string NextEffectSoundKey = NextLineData[8].Split("\r")[0];
 
                 //Additional Dialong Data When Key Is Not Valid
                 TalkDialogDataList.Add(
@@ -231,7 +231,22 @@ public class TalkManager : MonoBehaviour
         return "";
     }
 
-    public float GetTalkDelay(int id, int talkIndex)
+    public string GetSoundKey(int id, int talkIndex)
+    {
+        if (talkData.ContainsKey(id) != true)
+        {
+            return "";
+        }
+
+        if (talkData[id].DialogData.Count <= talkIndex)
+        {
+            return "";
+        }
+
+        return talkData[id].DialogData[talkIndex].EffectSoundKey;
+    }
+
+public float GetTalkDelay(int id, int talkIndex)
     {
         if (talkData.ContainsKey(id) != true)
         {

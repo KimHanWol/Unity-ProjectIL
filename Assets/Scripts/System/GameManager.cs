@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public QuestManager questManager;
     public ItemManager itemManager;
     public UIManager uiManager;
+    public SoundManager soundManager;
 
     //Animator
     public Animator talkPanel;
@@ -214,12 +215,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //Sound Event
+        if(soundManager != null)
+        {
+            string EffectSoundKey = talkManager.GetSoundKey(talkDataId, talkIndex);
+            soundManager.PlayAudioSound(EffectSoundKey);
+        }
+
+
         //Post Talk Event
-        if(talkIndex > 0)
+        if (talkIndex > 0)
         {
             CheckTalkEvent(talkDataId, talkIndex > 0 ? talkIndex - 1 : talkIndex);
         }
-
 
         //End Talk
         if (talkData == null) 
