@@ -214,9 +214,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //Post Talk Event
+        if(talkIndex > 0)
+        {
+            CheckTalkEvent(talkDataId, talkIndex > 0 ? talkIndex - 1 : talkIndex);
+        }
+
 
         //End Talk
-        if(talkData == null) 
+        if (talkData == null) 
         {
             //대사 없는 사물
             if (talkIndex == 0)
@@ -399,6 +405,32 @@ public class GameManager : MonoBehaviour
 
         cutSceneUI.SetActive(IsCutSceneUIActived);
         talkPanel.SetBool("isShow", true);
+    }
+
+    public void CheckTalkEvent(int talkDataId, int talkIndex)
+    {
+        if(talkDataId == 1001 && talkIndex == 5)
+        {
+            player.transform.position = new Vector2(0, 0);
+        }
+
+        if (talkDataId == 2001 && talkIndex == 2)
+        {
+            PlayerAction playerAction = player.GetComponent<PlayerAction>();
+            if (playerAction != null)
+            {
+                playerAction.Speed *= 2;
+            }
+        }
+
+        if (talkDataId == 2506 && talkIndex == 0)
+        {
+            PlayerAction playerAction = player.GetComponent<PlayerAction>();
+            if (playerAction != null)
+            {
+                playerAction.Speed /= 2;
+            }
+        }
     }
 
     public void MoveMap(LFGameObject InScanObject)
