@@ -5,15 +5,19 @@ using UnityEngine;
 public class DialogData
 {
     public string DialogText;
-    public int PortraitNum;
-    public int CutsceneKey;
     public float TalkDelay;
+    public int PortraitNum;
+    public string CutSceneKey;
+    public string AnimationKey;
+    public string EffectSoundKey;
 
-    public DialogData(string dialogText, int portraitNum, int cutsceneKey, float talkDelay)
+    public DialogData(string DialogText, float TalkDelay, int PortraitNum, string CutsceneKey, string AnimationKey, string EffectSoundKey)
     {
-        DialogText = dialogText;
-        PortraitNum = portraitNum;
-        CutsceneKey = cutsceneKey;
-        TalkDelay = talkDelay;
+        this.DialogText = DialogText;
+        this.TalkDelay = TalkDelay;
+        this.PortraitNum = PortraitNum;
+        this.CutSceneKey = CutsceneKey;
+        this.AnimationKey = AnimationKey;
+        this.EffectSoundKey = EffectSoundKey;
     }
 }

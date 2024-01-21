@@ -8,6 +8,7 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static TalkManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TalkManager talkManager;
     public QuestManager questManager;
     public ItemManager itemManager;
+    public UIManager uiManager;
 
     //Animator
     public Animator talkPanel;
@@ -32,14 +34,20 @@ public class GameManager : MonoBehaviour
     public GameObject ItemUI;
     public Image cutSceneImage;
     public Text DebugUI;
-    public bool isAction;
+    public bool isTalking;
     public int talkIndex;
+
+    public bool CanAction;
+    private bool IsPreAnimationPlaying;
+    private bool IsPostAnimationPlaying;
+    private bool IsTalkDelaying;
 
     void Start()
     {
         GameLoad(0);
         questText.text = questManager.CheckQuest();
         talkManager.InitializeTalkManager(SceneIndex);
+        CanAction = true;
     }
 
     void Update()
@@ -49,10 +57,17 @@ public class GameManager : MonoBehaviour
         {
             menuUI.SetActive(!menuUI.activeSelf);
         }
+
+        CanAction = !IsPreAnimationPlaying && !IsPostAnimationPlaying && !IsTalkDelaying;
     }
 
     public void Action()
     {
+        if(CanAction == false)
+        {
+            return;
+        }
+
         if(scanObject == null)
         {
             return;
@@ -116,12 +131,19 @@ public class GameManager : MonoBehaviour
 
 
         //If There Is Talk Delay
-        //float TalkDelay = talkManager.GetTalkDelay(id + questTalkIndex, talkIndex);
-        //if (TalkDelay > 0)
-        //{
-        //    StartCoroutine(WaitTalkDelay(TalkDelay));
-        //    return false;
-        //}
+        float TalkDelay = talkManager.GetTalkDelay(id + questTalkIndex, talkIndex);
+        if (TalkDelay > 0 && IsTalkDelaying == false)
+        {
+            IsTalkDelaying = true;
+            isTalking = false;
+            talkPanel.SetBool("isShow", false);
+            StartCoroutine(WaitForSecondsToTalk(TalkDelay, id, isNpc));
+            return true;
+        }
+        else
+        {
+            IsTalkDelaying = false;
+        }
 
         //It's Not For Current Quest
         if (talkManager.IsTalkDataForCurrentQuest(talkDataId, questManager.questId) == false)
@@ -129,13 +151,69 @@ public class GameManager : MonoBehaviour
             //return false;
         }
 
-        isAction = true;
+        if (uiManager == null)
+        {
+            return false;
+        }
 
-        if(TypingAnimation.bIsPlaying)
+        isTalking = true;
+
+        if (TypingAnimation.bIsPlaying)
         {
             TypingAnimation.SetMsg("");
             return true;
         }
+
+        //Pre Play UI Animation
+        if (uiManager != null)
+        {
+            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Pre);
+            if (IsPreAnimationPlaying == false)
+            {
+                float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                if (AnimationLength > 0)
+                {
+                    IsPreAnimationPlaying = true;
+                    isTalking = false;
+                    talkPanel.SetBool("isShow", false);
+                    StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
+                    return true;
+                }
+            }
+            IsPreAnimationPlaying = false;
+            talkPanel.SetBool("isShow", true);
+        }
+
+        //Playing Play UI Animation
+        if (uiManager != null)
+        {
+            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Playing);
+            uiManager.PlayAnimation(TalkAnimationKeyString);
+        }
+
+        //Post Play UI Animation
+        if (uiManager != null)
+        {
+            if(talkIndex > 0)
+            {
+                string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex - 1, TalkAnimationTiming.Post);
+                if (IsPostAnimationPlaying == false)
+                {
+                     float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                    if (AnimationLength > 0)
+                    {
+                        IsPostAnimationPlaying = true;
+                        isTalking = false;
+                        talkPanel.SetBool("isShow", false);
+                        StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, false));
+                        return true;
+                    }
+                }
+                IsPostAnimationPlaying = false;
+                talkPanel.SetBool("isShow", true);
+            }
+        }
+
 
         //End Talk
         if(talkData == null) 
@@ -143,43 +221,50 @@ public class GameManager : MonoBehaviour
             //대사 없는 사물
             if (talkIndex == 0)
             {
-                if (ScanLFObject != null && ScanLFObject.DisplayName.Length > 0)
+                AutoDialogObject autoDialogObject = scanObject.GetComponent<AutoDialogObject>();
+                if (autoDialogObject != null)
                 {
-                    if (ScanLFObject.DisplayName.Length > 0)
+                    if (autoDialogObject.QuestIndex != questManager.questId)
                     {
-                        talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
-                    }
-
-                    List<string> interactionTalkDataList = new List<string>();
-                    foreach(InteractionTalkData scanTalkData in ScanLFObject.InteractionTalkData)
-                    {
-                        if(scanTalkData.TalkKey == questTalkIndex)
-                        {
-                            interactionTalkDataList = scanTalkData.TalkDataList;
-                            break;
-                        }
-                    }
-
-                    if (interactionTalkDataList.Count <= 0)
-                    {
-                        interactionTalkDataList = ScanLFObject.DefaultInteractionTalkData;
-                    }
-
-                    if (interactionTalkDataList.Count > 0 &&
-                        interactionTalkDataList.Count > ScanLFObject.TalkIndex)
-                    {
-                        talkData = interactionTalkDataList[ScanLFObject.TalkIndex];
-                        ScanLFObject.TalkIndex++;
-                    }
-                    else
-                    {
-                        ScanLFObject.TalkIndex = 0;
+                        EndTalk(id, true);
+                        return false;
                     }
                 }
                 else
                 {
-                    EndTalk(id, false);
-                    return false;
+                    if (ScanLFObject != null && ScanLFObject.DisplayName.Length > 0)
+                    {
+                        if (ScanLFObject.DisplayName.Length > 0)
+                        {
+                            talkData = "평범한 " + ScanLFObject.DisplayName + "(이)다.";
+                        }
+
+                        List<string> interactionTalkDataList = new List<string>();
+                        foreach (InteractionTalkData scanTalkData in ScanLFObject.InteractionTalkData)
+                        {
+                            if (scanTalkData.TalkKey == questTalkIndex)
+                            {
+                                interactionTalkDataList = scanTalkData.TalkDataList;
+                                break;
+                            }
+                        }
+
+                        if (interactionTalkDataList.Count <= 0)
+                        {
+                            interactionTalkDataList = ScanLFObject.DefaultInteractionTalkData;
+                        }
+
+                        if (interactionTalkDataList.Count > 0 &&
+                            interactionTalkDataList.Count > ScanLFObject.TalkIndex)
+                        {
+                            talkData = interactionTalkDataList[ScanLFObject.TalkIndex];
+                            ScanLFObject.TalkIndex++;
+                        }
+                        else
+                        {
+                            ScanLFObject.TalkIndex = 0;
+                        }
+                    }
                 }
             }
             else
@@ -198,18 +283,20 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (talkData.Split('&').Length > 1)
+/*        if (talkData.Split('&').Length > 1)
         {
             string path = talkData.Split('&')[1].Split('\r')[0];
             Sprite cutSceneSprite = (Sprite)Resources.Load<Sprite>(path);
             cutSceneUI.SetActive(true);
             cutSceneImage.sprite = cutSceneSprite;
         }
-        else
+        else*/
+
+
         {
             cutSceneUI.SetActive(false);
 
-            if (isNpc)
+/*            if (isNpc)
             {
                 TypingAnimation.SetMsg(talkData.Split(':')[0]);
 
@@ -223,7 +310,7 @@ public class GameManager : MonoBehaviour
                     prevSprite = portraitImg.sprite;
                 }
             }
-            else
+            else*/
             {
                 TypingAnimation.SetMsg(talkData);
 
@@ -231,12 +318,40 @@ public class GameManager : MonoBehaviour
             }
         }
 
+/*        //Play UI Animation
+        if (uiManager != null)
+        {
+            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, true);
+            if (IsAnimationPlaying == false)
+            {
+                float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                if (AnimationLength > 0)
+                {
+                    IsAnimationPlaying = true;
+                    isTalking = false;
+                    talkPanel.SetBool("isShow", false);
+                    StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
+                    return true;
+                }
+            }
+            IsAnimationPlaying = false;
+            talkPanel.SetBool("isShow", true);
+        }*/
 
-        isAction = true;
-        talkPanel.SetBool("isShow", isAction);
+
+        isTalking = true;
+        talkPanel.SetBool("isShow", isTalking);
         talkIndex++;
 
         return true;
+    }
+
+    public IEnumerator WaitForSecondsToTalk(float AnimationLength, int id, bool isNpc)
+    {
+        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(AnimationLength);
+
+        Talk(id, isNpc);
     }
 
     void EndTalk(int id, bool bSucceed)
@@ -260,10 +375,18 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        isAction = false;
+        isTalking = false;
         talkIndex = 0;
         cutSceneUI.SetActive(false);
-        talkPanel.SetBool("isShow", isAction);
+        talkPanel.SetBool("isShow", false);
+
+        /*        else
+                {
+                    isTalking = false;
+                    talkIndex = 0;
+                    cutSceneUI.SetActive(false);
+                    talkPanel.SetBool("isShow", isTalking);
+                }*/
     }
 
     IEnumerator WaitTalkDelay(float duration)

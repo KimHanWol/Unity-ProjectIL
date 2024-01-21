@@ -29,13 +29,18 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
-        h = manager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
-        v = manager.isAction ? 0 : Input.GetAxisRaw("Vertical");
+        if(manager.CanAction == false)
+        {
+            return;
+        }
 
-        bool hDown = manager.isAction ? false : Input.GetButtonDown("Horizontal");
-        bool vDown = manager.isAction ? false : Input.GetButtonDown("Vertical");
-        bool hUp = manager.isAction ? false : Input.GetButtonUp("Horizontal");
-        bool vUp = manager.isAction ? false : Input.GetButtonUp("Vertical");
+        h = manager.isTalking ? 0 : Input.GetAxisRaw("Horizontal");
+        v = manager.isTalking ? 0 : Input.GetAxisRaw("Vertical");
+
+        bool hDown = manager.isTalking ? false : Input.GetButtonDown("Horizontal");
+        bool vDown = manager.isTalking ? false : Input.GetButtonDown("Vertical");
+        bool hUp = manager.isTalking ? false : Input.GetButtonUp("Horizontal");
+        bool vUp = manager.isTalking ? false : Input.GetButtonUp("Vertical");
 
         if (hDown || vUp)
             isHorizonMove = true;

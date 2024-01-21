@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class TalkManager : MonoBehaviour
 {
-    const int CSVDataSplitIndex = 10;
+    const int CSVDataSplitIndex = 8;
 
     Dictionary<int, TalkData> talkData;
     Dictionary<int, Sprite> portraitData;
@@ -47,10 +48,20 @@ public class TalkManager : MonoBehaviour
             int PortraitIndex = -1;
             int.TryParse(LineData[5], out PortraitIndex);
 
-            int CutsceneKey = -1;
-            int.TryParse(LineData[9], out CutsceneKey);
+            string CutsceneKey = LineData[6];
+            string AnimationKey = LineData[7];
+            string EffectSoundKey = LineData[8];
 
-            TalkDialogDataList.Add(new DialogData(LineData[3].Replace('/', ','), PortraitIndex, CutsceneKey, TalkDelay));
+            TalkDialogDataList.Add(
+                new DialogData(
+                    LineData[3].Replace('/', ','),
+                    TalkDelay,
+                    PortraitIndex,
+                    CutsceneKey,
+                    AnimationKey,
+                    EffectSoundKey
+                    )
+                );
 
             //Check Dialog Data Loop
             while (i + 1 < CSVTalkData.Count) 
@@ -73,24 +84,29 @@ public class TalkManager : MonoBehaviour
                 float NextTalkDelay = 0;
                 float.TryParse(NextLineData[4], out NextTalkDelay);
 
-                int PortraitNum = -1;
-                int.TryParse(NextLineData[5], out PortraitNum);
+                int NextPortraitNum = -1;
+                int.TryParse(NextLineData[5], out NextPortraitNum);
 
-                int NextCutsceneKey = -1;
-                int.TryParse(NextLineData[9], out NextCutsceneKey);
+                string NextCutsceneKey = NextLineData[6];
+                string NextAnimationKey = NextLineData[7];
+                string NextEffectSoundKey = NextLineData[8];
 
                 //Additional Dialong Data When Key Is Not Valid
-                TalkDialogDataList.Add(new DialogData(NextLineData[3].Replace('/', ','), PortraitNum, NextCutsceneKey, NextTalkDelay));
+                TalkDialogDataList.Add(
+                    new DialogData(
+                        NextLineData[3].Replace('/', ','),
+                        NextTalkDelay,
+                        NextPortraitNum, 
+                        NextCutsceneKey, 
+                        NextAnimationKey,
+                        NextEffectSoundKey
+                        )
+                    );
                 i++;
             }
 
             int QuestIndex = -1;
             int ObjectIndex = -1;
-            int SelectionKey = 0;
-            int AcquiredItemKey = 0;
-            int DisplayEnableItemKey = 0;
-            int Endingkey = 0;
-            int EffectSoundKey = 0;
 
             bool bIsValidData =
             int.TryParse(LineData[0], out QuestIndex) &&
@@ -111,12 +127,6 @@ public class TalkManager : MonoBehaviour
                 continue;
             }
 
-            int.TryParse(LineData[6], out SelectionKey);
-            int.TryParse(LineData[7], out AcquiredItemKey);
-            int.TryParse(LineData[8], out DisplayEnableItemKey);
-            int.TryParse(LineData[10], out Endingkey);
-            int.TryParse(LineData[11], out EffectSoundKey);
-
             int TalkKey = QuestIndex + ObjectIndex;
 
             talkData.Add(TalkKey, new TalkData(
@@ -124,10 +134,8 @@ public class TalkManager : MonoBehaviour
                 QuestActionIndex,
                 ObjectIndex,
                 TalkDialogDataList,
-                SelectionKey,
-                AcquiredItemKey,
-                DisplayEnableItemKey,
-                Endingkey,
+                CutsceneKey,
+                AnimationKey,
                 EffectSoundKey
                 ));
         }
@@ -179,17 +187,63 @@ public class TalkManager : MonoBehaviour
             return talkData[id].DialogData[talkIndex].DialogText;
         }
 
-        return null;
+        //return null;
+    }
+
+    public enum TalkAnimationTiming
+    { 
+        Pre,
+        Playing,
+        Post
+    }
+
+
+    public string GetAnimationKey(int id, int talkIndex, TalkAnimationTiming Timing)
+    {
+        if (talkData.ContainsKey(id) != true)
+        {
+            return "";
+        }
+
+        if (talkData[id].DialogData.Count <= talkIndex)
+        {
+            return "";
+        }
+
+        if(talkData[id].DialogData[talkIndex].AnimationKey == "")
+        {
+            return "";
+        }
+
+        string[] SplitAnimationKeyArray = talkData[id].DialogData[talkIndex].AnimationKey.Split("-");
+        if (SplitAnimationKeyArray.Length <= 0)
+        {
+            return "";
+        }
+
+        if ((Timing == TalkAnimationTiming.Pre && SplitAnimationKeyArray[0] == "Pre") ||
+            (Timing == TalkAnimationTiming.Post && SplitAnimationKeyArray[0] == "Post") ||
+            Timing == TalkAnimationTiming.Playing && SplitAnimationKeyArray.Length == 1)
+        {
+            return SplitAnimationKeyArray[1];
+        }
+
+        return "";
     }
 
     public float GetTalkDelay(int id, int talkIndex)
     {
-        if(talkData.ContainsKey(id) == true)
+        if (talkData.ContainsKey(id) != true)
         {
-            return talkData[id].DialogData[talkIndex].TalkDelay;
+            return 0;
         }
 
-        return 0;
+        if (talkData[id].DialogData.Count <= talkIndex)
+        {
+            return 0;
+        }
+
+        return talkData[id].DialogData[talkIndex].TalkDelay;
     }
 
     public Sprite GetPortrait(int id, int portraitIndex)
