@@ -57,6 +57,12 @@ public class TypingAnimation : MonoBehaviour
             return;
         }
 
+        if(targetMsg == null)
+        {
+            EffectEnd();
+            return;
+        }
+
         msgText.text += targetMsg[index];
         //Sound
         if (targetMsg[index] != ' ' && targetMsg[index] != '.')

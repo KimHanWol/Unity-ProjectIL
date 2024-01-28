@@ -279,6 +279,11 @@ public class GameManager : MonoBehaviour
                             ScanLFObject.TalkIndex = 0;
                         }
                     }
+                    else
+                    {
+                        EndTalk(id, true);
+                        return false;
+                    }
                 }
             }
             else
@@ -417,9 +422,11 @@ public class GameManager : MonoBehaviour
 
     public void CheckTalkEvent(int talkDataId, int talkIndex)
     {
+        //Scene Num
+
         if(talkDataId == 1001 && talkIndex == 5)
         {
-            player.transform.position = new Vector2(0, 0);
+            //player.transform.position = new Vector2(0, 0);
         }
 
         if (talkDataId == 2001 && talkIndex == 2)
@@ -427,7 +434,7 @@ public class GameManager : MonoBehaviour
             PlayerAction playerAction = player.GetComponent<PlayerAction>();
             if (playerAction != null)
             {
-                playerAction.Speed *= 2;
+                //playerAction.Speed *= 2;
             }
         }
 
@@ -436,7 +443,7 @@ public class GameManager : MonoBehaviour
             PlayerAction playerAction = player.GetComponent<PlayerAction>();
             if (playerAction != null)
             {
-                playerAction.Speed /= 2;
+                //playerAction.Speed /= 2;
             }
         }
     }

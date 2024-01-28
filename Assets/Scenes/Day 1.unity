@@ -446,6 +446,8 @@ MonoBehaviour:
   SoundEventList:
   - SoundKey: Dummy
     AudioSource: {fileID: 8300000, guid: aa6666b44c2345c43b18634149b7ca9e, type: 3}
+  - SoundKey: Dummy2
+    AudioSource: {fileID: 8300000, guid: aa6666b44c2345c43b18634149b7ca9e, type: 3}
   audioSource: {fileID: 138152587}
 --- !u!82 &138152587
 AudioSource:
@@ -458,7 +460,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 598daf09b33b85d488d9eaba80895d15, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3266,9 +3268,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d6024b9b6eaa9964488915da1767c88c, type: 3}
+    m_Font: {fileID: 12800000, guid: 975136498b1d25042a3a58c2ab29cdfb, type: 3}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 121
@@ -3903,6 +3905,7 @@ MonoBehaviour:
   questManager: {fileID: 283272832}
   itemManager: {fileID: 1883520925}
   uiManager: {fileID: 634553338}
+  soundManager: {fileID: 138152586}
   talkPanel: {fileID: 1004218184}
   PortraitAnim: {fileID: 741998709}
   portraitImg: {fileID: 741998707}
