@@ -29,7 +29,7 @@ public class TalkManager : MonoBehaviour
 
     void GenerateData(int SceneIndex)
     {
-        List<List<string>> CSVTalkData = CSVReader.GetSCVData("Day" + (SceneIndex + 1));
+        List<List<string>> CSVTalkData = CSVReader.GetSCVData("GameScript\\Day" + (SceneIndex + 1));
         int CurrentQuestIndex = 0;
         int QuestActionIndex = 0;
         for (int i = 0; i < CSVTalkData.Count; i++)
@@ -64,7 +64,7 @@ public class TalkManager : MonoBehaviour
                 );
 
             //Check Dialog Data Loop
-            while (i + 1 < CSVTalkData.Count) 
+            while (i + 1 < CSVTalkData.Count)
             {
                 List<string> NextLineData = CSVTalkData[i + 1];
                 if (NextLineData.Count < CSVDataSplitIndex)
@@ -76,7 +76,7 @@ public class TalkManager : MonoBehaviour
                 int.TryParse(NextLineData[2], out NextTalkKey);
 
                 //Dialog Data Not Continued
-                if(NextTalkKey > 0)
+                if (NextTalkKey > 0)
                 {
                     break;
                 }
@@ -96,8 +96,8 @@ public class TalkManager : MonoBehaviour
                     new DialogData(
                         NextLineData[3].Replace('/', ','),
                         NextTalkDelay,
-                        NextPortraitNum, 
-                        NextCutsceneKey, 
+                        NextPortraitNum,
+                        NextCutsceneKey,
                         NextAnimationKey,
                         NextEffectSoundKey
                         )
@@ -112,7 +112,7 @@ public class TalkManager : MonoBehaviour
             int.TryParse(LineData[0], out QuestIndex) &&
             int.TryParse(LineData[1], out ObjectIndex);
 
-            if(CurrentQuestIndex != QuestIndex)
+            if (CurrentQuestIndex != QuestIndex)
             {
                 CurrentQuestIndex = QuestIndex;
                 QuestActionIndex = 0;
@@ -158,12 +158,12 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalkText(int id, int talkIndex, int questTalkIndex)
     {
-        if(id == 0)
+        if (id == 0)
         {
             return null;
         }
 
-        if(talkData.ContainsKey(id) == false)
+        if (talkData.ContainsKey(id) == false)
         {
             return null;
 
@@ -191,7 +191,7 @@ public class TalkManager : MonoBehaviour
     }
 
     public enum TalkAnimationTiming
-    { 
+    {
         Pre,
         Playing,
         Post
@@ -210,7 +210,7 @@ public class TalkManager : MonoBehaviour
             return "";
         }
 
-        if(talkData[id].DialogData[talkIndex].AnimationKey == "")
+        if (talkData[id].DialogData[talkIndex].AnimationKey == "")
         {
             return "";
         }
@@ -246,7 +246,7 @@ public class TalkManager : MonoBehaviour
         return talkData[id].DialogData[talkIndex].EffectSoundKey;
     }
 
-public float GetTalkDelay(int id, int talkIndex)
+    public float GetTalkDelay(int id, int talkIndex)
     {
         if (talkData.ContainsKey(id) != true)
         {
@@ -264,5 +264,21 @@ public float GetTalkDelay(int id, int talkIndex)
     public Sprite GetPortrait(int id, int portraitIndex)
     {
         return portraitData[id + portraitIndex];
+    }
+
+
+    public string GetCutSceneKey(int id, int talkIndex)
+    {
+        if (talkData.ContainsKey(id) != true)
+        {
+            return "";
+        }
+
+        if (talkData[id].DialogData.Count <= talkIndex)
+        {
+            return "";
+        }
+
+        return talkData[id].DialogData[talkIndex].CutSceneKey;
     }
 }

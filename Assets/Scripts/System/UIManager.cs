@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AnimationType
 { 
@@ -18,9 +19,21 @@ public class AnimationData
     public Animator TargetAnimator;
 }
 
+[Serializable]
+public class CutSceneData
+{
+    public string CutSceneKey;
+    public Sprite CutSceneSprite;
+}
+
+
 public class UIManager : MonoBehaviour
 {
+    public GameObject cutSceneUI;
+    public List<CutSceneData> CutSceneDataList;
+
     public List<AnimationData> AnimationList;
+
 
     public float PlayAnimation(string AnimationKeyString)
     {
@@ -44,5 +57,32 @@ public class UIManager : MonoBehaviour
         return 0;
     }
 
+    public void ShowCutScene(string InCutSceneKey)
+    {
+        if(cutSceneUI != null)
+        {
+            cutSceneUI.SetActive(true);
 
+            Image CutSceneImage = cutSceneUI.GetComponentInChildren<Image>();
+            if (CutSceneImage != null)
+            {
+                foreach (CutSceneData cutSceneData in CutSceneDataList)
+                {
+                    if (cutSceneData.CutSceneKey == InCutSceneKey)
+                    {
+                        CutSceneImage.sprite = cutSceneData.CutSceneSprite;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void HideCutScene()
+    {
+        if(cutSceneUI != null)
+        {
+            cutSceneUI.SetActive(false);
+        }
+    }
 }

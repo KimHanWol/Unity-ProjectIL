@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public GameObject menuUI;
     public GameObject scanObject;
     public GameObject player;
-    public GameObject cutSceneUI;
     public GameObject ItemUI;
     public Image cutSceneImage;
     public Text DebugUI;
@@ -157,6 +156,11 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
+        if(soundManager == null) 
+        {
+            return false;    
+        }
+
         isTalking = true;
 
         if (TypingAnimation.bIsPlaying)
@@ -166,7 +170,6 @@ public class GameManager : MonoBehaviour
         }
 
         //Pre Play UI Animation
-        if (uiManager != null)
         {
             string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Pre);
             if (IsPreAnimationPlaying == false)
@@ -186,14 +189,12 @@ public class GameManager : MonoBehaviour
         }
 
         //Playing Play UI Animation
-        if (uiManager != null)
         {
             string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Playing);
             uiManager.PlayAnimation(TalkAnimationKeyString);
         }
 
         //Post Play UI Animation
-        if (uiManager != null)
         {
             if(talkIndex > 0)
             {
@@ -216,12 +217,21 @@ public class GameManager : MonoBehaviour
         }
 
         //Sound Event
-        if(soundManager != null)
         {
             string EffectSoundKey = talkManager.GetSoundKey(talkDataId, talkIndex);
             soundManager.PlayAudioSound(EffectSoundKey);
         }
 
+        //If there Is Cutcene Event
+        string CutSceneKey = talkManager.GetCutSceneKey(talkDataId, talkIndex);
+        if(CutSceneKey != null && CutSceneKey != "")
+        {
+            uiManager.ShowCutScene(CutSceneKey);
+        }
+        else
+        {
+            uiManager.HideCutScene();
+        }
 
         //Post Talk Event
         if (talkIndex > 0)
@@ -313,8 +323,6 @@ public class GameManager : MonoBehaviour
 
 
         {
-            cutSceneUI.SetActive(false);
-
 /*            if (isNpc)
             {
                 TypingAnimation.SetMsg(talkData.Split(':')[0]);
@@ -396,7 +404,6 @@ public class GameManager : MonoBehaviour
 
         isTalking = false;
         talkIndex = 0;
-        cutSceneUI.SetActive(false);
         talkPanel.SetBool("isShow", false);
 
         /*        else
@@ -410,13 +417,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitTalkDelay(float duration)
     {
-        bool IsCutSceneUIActived = cutSceneUI.activeInHierarchy;
-        cutSceneUI.SetActive(false);
         talkPanel.SetBool("isShow", false);
-
         yield return new WaitForSeconds(duration);
-
-        cutSceneUI.SetActive(IsCutSceneUIActived);
         talkPanel.SetBool("isShow", true);
     }
 
