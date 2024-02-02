@@ -49,8 +49,9 @@ public class TalkManager : MonoBehaviour
             int.TryParse(LineData[5], out PortraitIndex);
 
             string CutsceneKey = LineData[6];
-            string AnimationKey = LineData[7];
-            string EffectSoundKey = LineData[8].Split("\r")[0];
+            string TalkEventKey = LineData[7];
+            string AnimationKey = LineData[8];
+            string EffectSoundKey = LineData[9].Split("\r")[0];
 
             TalkDialogDataList.Add(
                 new DialogData(
@@ -58,6 +59,7 @@ public class TalkManager : MonoBehaviour
                     TalkDelay,
                     PortraitIndex,
                     CutsceneKey,
+                    TalkEventKey,
                     AnimationKey,
                     EffectSoundKey
                     )
@@ -88,8 +90,9 @@ public class TalkManager : MonoBehaviour
                 int.TryParse(NextLineData[5], out NextPortraitNum);
 
                 string NextCutsceneKey = NextLineData[6];
-                string NextAnimationKey = NextLineData[7];
-                string NextEffectSoundKey = NextLineData[8].Split("\r")[0];
+                string NextTalkEventKey = NextLineData[7];
+                string NextAnimationKey = NextLineData[8];
+                string NextEffectSoundKey = NextLineData[9].Split("\r")[0];
 
                 //Additional Dialong Data When Key Is Not Valid
                 TalkDialogDataList.Add(
@@ -98,6 +101,7 @@ public class TalkManager : MonoBehaviour
                         NextTalkDelay,
                         NextPortraitNum,
                         NextCutsceneKey,
+                        NextTalkEventKey,
                         NextAnimationKey,
                         NextEffectSoundKey
                         )
@@ -280,5 +284,20 @@ public class TalkManager : MonoBehaviour
         }
 
         return talkData[id].DialogData[talkIndex].CutSceneKey;
+    }
+
+    public string GetTalkEventKey(int id, int talkIndex)
+    {
+        if (talkData.ContainsKey(id) != true)
+        {
+            return "";
+        }
+
+        if (talkData[id].DialogData.Count <= talkIndex)
+        {
+            return "";
+        }
+
+        return talkData[id].DialogData[talkIndex].TalkEventKey;
     }
 }

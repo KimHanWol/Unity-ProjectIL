@@ -234,10 +234,8 @@ public class GameManager : MonoBehaviour
         }
 
         //Post Talk Event
-        if (talkIndex > 0)
-        {
-            CheckTalkEvent(talkDataId, talkIndex > 0 ? talkIndex - 1 : talkIndex);
-        }
+        string TalkEventKey = talkManager.GetTalkEventKey(talkDataId, talkIndex);
+        CheckTalkEvent(TalkEventKey);
 
         //End Talk
         if (talkData == null) 
@@ -312,58 +310,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-/*        if (talkData.Split('&').Length > 1)
         {
-            string path = talkData.Split('&')[1].Split('\r')[0];
-            Sprite cutSceneSprite = (Sprite)Resources.Load<Sprite>(path);
-            cutSceneUI.SetActive(true);
-            cutSceneImage.sprite = cutSceneSprite;
+            TypingAnimation.SetMsg(talkData);
+
+            portraitImg.color = new Color(1, 1, 1, 0);
         }
-        else*/
-
-
-        {
-/*            if (isNpc)
-            {
-                TypingAnimation.SetMsg(talkData.Split(':')[0]);
-
-                portraitImg.sprite = talkManager.GetPortrait(id, int.Parse(talkData.Split(":")[1]));
-                portraitImg.color = new Color(1, 1, 1, 1);
-
-                //Show Portrait Animation
-                if (prevSprite != portraitImg.sprite)
-                {
-                    PortraitAnim.SetTrigger("doEffect");
-                    prevSprite = portraitImg.sprite;
-                }
-            }
-            else*/
-            {
-                TypingAnimation.SetMsg(talkData);
-
-                portraitImg.color = new Color(1, 1, 1, 0);
-            }
-        }
-
-/*        //Play UI Animation
-        if (uiManager != null)
-        {
-            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, true);
-            if (IsAnimationPlaying == false)
-            {
-                float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
-                if (AnimationLength > 0)
-                {
-                    IsAnimationPlaying = true;
-                    isTalking = false;
-                    talkPanel.SetBool("isShow", false);
-                    StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
-                    return true;
-                }
-            }
-            IsAnimationPlaying = false;
-            talkPanel.SetBool("isShow", true);
-        }*/
 
 
         isTalking = true;
@@ -422,31 +373,70 @@ public class GameManager : MonoBehaviour
         talkPanel.SetBool("isShow", true);
     }
 
-    public void CheckTalkEvent(int talkDataId, int talkIndex)
+    public void CheckTalkEvent(string TalkEventKey)
     {
-        //Scene Num
-
-        if(talkDataId == 1001 && talkIndex == 5)
+        if(TalkEventKey == null || TalkEventKey == "" )
         {
-            //player.transform.position = new Vector2(0, 0);
+            return;
         }
 
-        if (talkDataId == 2001 && talkIndex == 2)
+        SpriteRenderer PlayerSprite = player.GetComponent<SpriteRenderer>();
+        if(PlayerSprite == null)
         {
-            PlayerAction playerAction = player.GetComponent<PlayerAction>();
-            if (playerAction != null)
-            {
-                //playerAction.Speed *= 2;
-            }
+            return;
         }
 
-        if (talkDataId == 2506 && talkIndex == 0)
+        Animator PlayerAnimator = player.GetComponent<Animator>();
+        if(PlayerAnimator == null)
         {
-            PlayerAction playerAction = player.GetComponent<PlayerAction>();
-            if (playerAction != null)
-            {
-                //playerAction.Speed /= 2;
-            }
+            return;
+        }
+
+        Camera PlayerCamera = player.GetComponentInChildren<Camera>();
+        if(PlayerCamera == null)
+        {
+            return;
+        }
+
+        PlayerAction PlayerActionComp = player.GetComponent<PlayerAction>();
+        if(PlayerActionComp == null)
+        {
+            return;
+        }
+
+        switch (TalkEventKey)
+        {
+            case "Teleport_Bed":
+                player.transform.position = new Vector3(-24.0f, -1.66f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
+            case "Teleport_VR_Home":
+                break;
+            case "Teleport_VR_Vacuity":
+                break;
+            case "PassOut_Start":
+                PlayerSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerSprite.color = Color.gray;
+                PlayerAnimator.SetInteger("vAxisRaw", 1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
+            case "PassOut_End":
+                PlayerSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerSprite.color = Color.white;
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
+            case "HighSpeed_Start":
+                PlayerActionComp.Speed *= 2;
+                break;
+            case "HighSpeed_End":
+                PlayerActionComp.Speed /= 2;
+                break;
         }
     }
 
