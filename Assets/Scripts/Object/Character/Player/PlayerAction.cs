@@ -68,6 +68,18 @@ public class PlayerAction : MonoBehaviour
             anim.SetInteger("vAxisRaw", (int)v);
         }
 
+        //For Flip Character Sprite
+        if (h > 0.01f)
+        {
+            //On Right Side
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(h < -0.01f)
+        {
+            //On Left Side
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         if (vDown && v == 1) dirVec = Vector3.up;
         else if (vDown && v == -1) dirVec = Vector3.down;
         else if (hDown && h == -1) dirVec = Vector3.left;
