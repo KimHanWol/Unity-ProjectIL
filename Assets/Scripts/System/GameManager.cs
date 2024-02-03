@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private bool IsPreAnimationPlaying;
     private bool IsPostAnimationPlaying;
     private bool IsTalkDelaying;
+    LFGameObject ScanLFObject;
     private LFGameObject CurrentlyInteractedObject;
 
     void Start()
@@ -69,7 +70,6 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        LFGameObject ScanLFObject = null;
         if (isTalking == true && CurrentlyInteractedObject != null)
         {
             ScanLFObject = CurrentlyInteractedObject;
@@ -127,8 +127,7 @@ public class GameManager : MonoBehaviour
 
     public bool Talk(int id,  bool isNpc)
     {
-         LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
-        if(ScanLFObject == null)
+        if (ScanLFObject == null)
         {
             return false;
         }
@@ -257,7 +256,7 @@ public class GameManager : MonoBehaviour
             //대사 없는 사물
             if (talkIndex == 0)
             {
-                AutoDialogObject autoDialogObject = scanObject.GetComponent<AutoDialogObject>();
+                AutoDialogObject autoDialogObject = ScanLFObject.GetComponent<AutoDialogObject>();
                 if (autoDialogObject != null)
                 {
                     if (autoDialogObject.QuestIndex != questManager.questId)
@@ -310,7 +309,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                AutoDialogObject autoDialogObject = scanObject.GetComponent<AutoDialogObject>();
+                AutoDialogObject autoDialogObject = ScanLFObject.GetComponent<AutoDialogObject>();
                 if(autoDialogObject != null)
                 {
                     if (autoDialogObject.QuestIndex != questManager.questId)
@@ -357,12 +356,11 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (scanObject != null)
+            if (ScanLFObject != null)
             {
-                LFGameObject ScanLFObject = scanObject.GetComponent<LFGameObject>();
                 if (ScanLFObject != null && ScanLFObject.lFGameObjectType == LFGameObjectType.AutoDialog)
                 {
-                    scanObject.gameObject.SetActive(false);
+                    ScanLFObject.gameObject.SetActive(false);
                 }
             }
         }
@@ -428,8 +426,25 @@ public class GameManager : MonoBehaviour
                 PlayerAnimator.SetBool("isChange", true);
                 break;
             case "Teleport_VR_Home":
+                player.transform.position = new Vector3(1.0f, 43.0f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
                 break;
-            case "Teleport_VR_Vacuity":
+            case "Teleport_VR_Vacuity_Black":
+                player.transform.position = new Vector3(1.0f, -18.0f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
+            case "Teleport_VR_Vacuity_White":
+                player.transform.position = new Vector3(1.0f, -53.0f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
                 break;
             case "PassOut_Start":
                 PlayerSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
