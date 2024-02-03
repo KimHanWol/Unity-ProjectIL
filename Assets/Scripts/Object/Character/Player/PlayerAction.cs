@@ -130,6 +130,7 @@ public class PlayerAction : MonoBehaviour
         if(rayHitArray.Length <= 0)
         {
             ScanObject = null;
+            manager.scanObject = ScanObject;
         }
     }
 
@@ -143,8 +144,9 @@ public class PlayerAction : MonoBehaviour
         AutoDialogObject autoDialogObject = ScanObject.GetComponent<AutoDialogObject>();
         if(autoDialogObject != null && autoDialogObject.IsFirstInteraction == true)
         {
-            bool isTalkSucceed = manager.Talk(autoDialogObject.DialogKey, autoDialogObject.IsNPC);
-            if(isTalkSucceed == true)
+            //bool isTalkSucceed = manager.Talk(autoDialogObject.DialogKey, autoDialogObject.IsNPC);
+            bool isTalkSucceed = manager.Action();
+            if (isTalkSucceed == true)
             {
                 autoDialogObject.IsFirstInteraction = false;
             }

@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private bool IsPreAnimationPlaying;
     private bool IsPostAnimationPlaying;
     private bool IsTalkDelaying;
+    private LFGameObject CurrentlyInteractedObject;
 
     void Start()
     {
@@ -61,46 +62,59 @@ public class GameManager : MonoBehaviour
         CanAction = !IsPreAnimationPlaying && !IsPostAnimationPlaying && !IsTalkDelaying;
     }
 
-    public void Action()
+    public bool Action()
     {
         if(CanAction == false)
         {
-            return;
+            return false;
         }
 
-        if(scanObject == null)
+        LFGameObject ScanLFObject = null;
+        if (isTalking == true && CurrentlyInteractedObject != null)
         {
-            return;
+            ScanLFObject = CurrentlyInteractedObject;
+        }
+        else
+        {
+            ScanLFObject = scanObject.GetComponent<LFGameObject>();
         }
 
-        LFGameObject LFGameObject = scanObject.GetComponent<LFGameObject>();
-        if(LFGameObject != null)
+        CurrentlyInteractedObject = ScanLFObject;
+
+        if (ScanLFObject == null)
         {
-            switch(LFGameObject.lFGameObjectType)
-            {
-                case LFGameObjectType.None:
-                    UnityEngine.Debug.Log("the Scan Object Has None Type, Please Select Object's Type");
-                    break;
-                case LFGameObjectType.Object:
-                    Talk(LFGameObject.id, false);
-                    break;
-                case LFGameObjectType.NPC:
-                    Talk(LFGameObject.id, true);
-                    break;
-                case LFGameObjectType.Portal:
-                    MoveMap(LFGameObject);
-                    break;
-                case LFGameObjectType.AutoDialog:
-                    AutoDialogObject autoDialogObject = scanObject.GetComponent<AutoDialogObject>();
-                    if (autoDialogObject != null)
-                    {
-                        Talk(autoDialogObject.DialogKey, autoDialogObject.IsNPC);
-                    }
-                    break;
-                default:
-                    break;
-            }
+            return false;
         }
+
+        bool IsActionComplete = false;
+
+        switch (ScanLFObject.lFGameObjectType)
+        {
+            case LFGameObjectType.None:
+                UnityEngine.Debug.Log("the Scan Object Has None Type, Please Select Object's Type");
+                IsActionComplete = false;
+                break;
+            case LFGameObjectType.Object:
+                IsActionComplete = Talk(ScanLFObject.id, false);
+                break;
+            case LFGameObjectType.NPC:
+                IsActionComplete = Talk(ScanLFObject.id, true);
+                break;
+            case LFGameObjectType.Portal:
+                IsActionComplete = MoveMap(ScanLFObject);
+                break;
+            case LFGameObjectType.AutoDialog:
+                AutoDialogObject autoDialogObject = ScanLFObject.GetComponent<AutoDialogObject>();
+                if (autoDialogObject != null)
+                {
+                    IsActionComplete = Talk(autoDialogObject.DialogKey, autoDialogObject.IsNPC);
+                }
+                break;
+            default:
+                break;
+        }
+
+        return IsActionComplete;
     }
 
     public void OpenItemUI()
@@ -440,22 +454,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MoveMap(LFGameObject InScanObject)
+    public bool MoveMap(LFGameObject InScanObject)
     {
         if (InScanObject == null || InScanObject.lFGameObjectType != LFGameObjectType.Portal)
         {
-            return;
+            return false;
         }
 
         Portal portalObject = (Portal)InScanObject;
         if (portalObject == null)
         {
-            return;
+            return false;
         }
 
         if (portalObject.SpawnObject == null)
         {
-            return;
+            return false;
         }
 
         //Z축은 그대로
@@ -463,6 +477,8 @@ public class GameManager : MonoBehaviour
             portalObject.SpawnObject.transform.position.x,
             portalObject.SpawnObject.transform.position.y,
             player.transform.position.z);
+
+        return true;
     }
 
     public void GameSave(int index)

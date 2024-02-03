@@ -167,18 +167,14 @@ public class TalkManager : MonoBehaviour
             return null;
         }
 
+        if(talkData == null)
+        {
+            return null;
+        }
+
         if (talkData.ContainsKey(id) == false)
         {
             return null;
-
-            //if (talkData.ContainsKey(id - id % 10) == false)
-            //{
-            //    return GetTalk(id - id % 100, talkIndex); // Get First Talk
-            //}
-            //else
-            //{
-            //    return GetTalk(id - id % 10, talkIndex); // Get First Quest Talk
-            //}
         }
 
         if (talkIndex >= talkData[id].DialogData.Count)
@@ -186,12 +182,7 @@ public class TalkManager : MonoBehaviour
             return null;
         }
 
-        //if (talkData[id].QuestActionIndex + talkData[id].QuestIndex == questTalkIndex)
-        {
-            return talkData[id].DialogData[talkIndex].DialogText;
-        }
-
-        //return null;
+        return talkData[id].DialogData[talkIndex].DialogText;
     }
 
     public enum TalkAnimationTiming
@@ -204,6 +195,11 @@ public class TalkManager : MonoBehaviour
 
     public string GetAnimationKey(int id, int talkIndex, TalkAnimationTiming Timing)
     {
+        if(talkData == null)
+        {
+            return "";
+        }
+
         if (talkData.ContainsKey(id) != true)
         {
             return "";
@@ -237,6 +233,11 @@ public class TalkManager : MonoBehaviour
 
     public string GetSoundKey(int id, int talkIndex)
     {
+        if (talkData == null)
+        {
+            return "";
+        }
+
         if (talkData.ContainsKey(id) != true)
         {
             return "";
@@ -252,6 +253,11 @@ public class TalkManager : MonoBehaviour
 
     public float GetTalkDelay(int id, int talkIndex)
     {
+        if (talkData == null)
+        {
+            return 0;
+        }
+
         if (talkData.ContainsKey(id) != true)
         {
             return 0;
@@ -273,6 +279,11 @@ public class TalkManager : MonoBehaviour
 
     public string GetCutSceneKey(int id, int talkIndex)
     {
+        if (talkData == null)
+        {
+            return "";
+        }
+
         if (talkData.ContainsKey(id) != true)
         {
             return "";
@@ -288,6 +299,11 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalkEventKey(int id, int talkIndex)
     {
+        if (talkData == null)
+        {
+            return "";
+        }
+
         if (talkData.ContainsKey(id) != true)
         {
             return "";
