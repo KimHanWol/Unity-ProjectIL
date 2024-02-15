@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleManager : MonoBehaviour
+public class TitleUIManager : MonoBehaviour
 {
     public List<GameObject> HeartObjectList;
     public Sprite BrokenHeartSprite;

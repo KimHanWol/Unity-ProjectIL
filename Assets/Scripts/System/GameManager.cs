@@ -47,9 +47,21 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameLoad(0);
-        questText.text = questManager.CheckQuest();
-        talkManager.InitializeTalkManager(SceneIndex);
+        if(questManager != null)
+        {
+            questText.text = questManager.CheckQuest();
+        }
+
+        if(talkManager != null)
+        {
+            talkManager.InitializeTalkManager(SceneIndex);
+        }
         CanAction = true;
+
+        if(soundManager != null)
+        {
+            soundManager.PlayBGMLoopBySceneIndex(SceneIndex);
+        }
     }
 
     void Update()
@@ -76,12 +88,24 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ScanLFObject = scanObject.GetComponent<LFGameObject>();
+            if(scanObject != null)
+            {
+                ScanLFObject = scanObject.GetComponent<LFGameObject>();
+            }
+            else
+            {
+                ScanLFObject = null;
+            }
         }
 
         CurrentlyInteractedObject = ScanLFObject;
 
         if (ScanLFObject == null)
+        {
+            return false;
+        }
+
+        if(scanObject != null && scanObject.activeInHierarchy == false)
         {
             return false;
         }
