@@ -90,10 +90,10 @@ public class PlayerAction : MonoBehaviour
             manager.Action();
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+/*        if (Input.GetKeyDown(KeyCode.I))
         {
             manager.OpenItemUI();
-        }
+        }*/
     }
 
 

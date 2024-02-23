@@ -13,27 +13,13 @@ using static TalkManager;
 public class GameManager : MonoBehaviour
 {
     //Manager
-    public TalkManager talkManager;
-    public QuestManager questManager;
-    public ItemManager itemManager;
-    public UIManager uiManager;
-    public SoundManager soundManager;
+    private TalkManager talkManager;
+    private QuestManager questManager;
+    private UIManager uiManager;
+    private SoundManager soundManager;
 
-    //Animator
-    public Animator talkPanel;
-    public Animator PortraitAnim;
-
-    public Image portraitImg;
-    public Sprite prevSprite;
-    public TypingAnimation TypingAnimation;
-
-    public Text questText;
-    public GameObject menuUI;
     public GameObject scanObject;
     public GameObject player;
-    public GameObject ItemUI;
-    public Image cutSceneImage;
-    public Text DebugUI;
     public bool isTalking;
     public int talkIndex;
 
@@ -44,24 +30,23 @@ public class GameManager : MonoBehaviour
     LFGameObject ScanLFObject;
     private LFGameObject CurrentlyInteractedObject;
 
+    void Awake()
+    {
+        talkManager = GetComponentInChildren<TalkManager>();
+        questManager = GetComponentInChildren<QuestManager>();
+        uiManager = GetComponentInChildren<UIManager>();
+        soundManager = GetComponentInChildren<SoundManager>();
+    }
+
     void Start()
     {
         GameLoad(0);
-        if(questManager != null)
-        {
-            questText.text = questManager.CheckQuest();
-        }
 
-        if(talkManager != null)
-        {
-            talkManager.InitializeTalkManager(SceneIndex);
-        }
+        uiManager.SetQuestText(questManager.CheckQuest());
+        talkManager.InitializeTalkManager(SceneIndex);
         CanAction = true;
 
-        if(soundManager != null)
-        {
-            soundManager.PlayBGMLoopBySceneIndex(SceneIndex);
-        }
+        soundManager.PlayBGMLoopBySceneIndex(SceneIndex);
     }
 
     void Update()
@@ -69,7 +54,10 @@ public class GameManager : MonoBehaviour
         //Sub Menu
         if(Input.GetButtonDown("Cancel"))
         {
-            menuUI.SetActive(!menuUI.activeSelf);
+            if(uiManager != null)
+            {
+                uiManager.ToggleMenu();
+            }
         }
 
         CanAction = !IsPreAnimationPlaying && !IsPostAnimationPlaying && !IsTalkDelaying;
@@ -141,14 +129,6 @@ public class GameManager : MonoBehaviour
         return IsActionComplete;
     }
 
-    public void OpenItemUI()
-    {
-        if (ItemUI.activeSelf == true) return;
-
-        ItemUI.SetActive(true);
-        itemManager.UpdateItemBags();
-    }
-
     public bool Talk(int id,  bool isNpc)
     {
         if (ScanLFObject == null)
@@ -157,6 +137,7 @@ public class GameManager : MonoBehaviour
         }
 
         int questTalkIndex = 0;
+
         int talkDataId = id + questManager.questId;
 
         //Set Talk Data
@@ -173,7 +154,7 @@ public class GameManager : MonoBehaviour
         {
             IsTalkDelaying = true;
             isTalking = false;
-            talkPanel.SetBool("isShow", false);
+            uiManager.EnableDialogUIWithAnimation(false);
             StartCoroutine(WaitForSecondsToTalk(TalkDelay, id, isNpc));
             return true;
         }
@@ -200,9 +181,9 @@ public class GameManager : MonoBehaviour
 
         isTalking = true;
 
-        if (TypingAnimation.bIsPlaying)
+        if (uiManager.IsTyping())
         {
-            TypingAnimation.SetMsg("");
+            uiManager.SetTypingText("");
             return true;
         }
 
@@ -216,13 +197,13 @@ public class GameManager : MonoBehaviour
                 {
                     IsPreAnimationPlaying = true;
                     isTalking = false;
-                    talkPanel.SetBool("isShow", false);
+                    uiManager.EnableDialogUIWithAnimation(false);
                     StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
                     return true;
                 }
             }
             IsPreAnimationPlaying = false;
-            talkPanel.SetBool("isShow", true);
+            uiManager.EnableDialogUIWithAnimation(true);
         }
 
         //Playing Play UI Animation
@@ -243,13 +224,13 @@ public class GameManager : MonoBehaviour
                     {
                         IsPostAnimationPlaying = true;
                         isTalking = false;
-                        talkPanel.SetBool("isShow", false);
+                        uiManager.EnableDialogUIWithAnimation(false);
                         StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, false));
                         return true;
                     }
                 }
                 IsPostAnimationPlaying = false;
-                talkPanel.SetBool("isShow", true);
+                uiManager.EnableDialogUIWithAnimation(true);
             }
         }
 
@@ -348,14 +329,13 @@ public class GameManager : MonoBehaviour
         }
 
         {
-            TypingAnimation.SetMsg(talkData);
-
-            portraitImg.color = new Color(1, 1, 1, 0);
+            uiManager.SetTypingText(talkData);
+            uiManager.SetPortraitColor(new Color(1, 1, 1, 0));
         }
 
 
         isTalking = true;
-        talkPanel.SetBool("isShow", isTalking);
+        uiManager.EnableDialogUIWithAnimation(isTalking);
         talkIndex++;
 
         return true;
@@ -373,8 +353,9 @@ public class GameManager : MonoBehaviour
     {
         if(bSucceed == true)
         {
-            questText.text = questManager.CheckQuest(id);
-            if(questText.text == "SceneEnd")
+            string QuestText = questManager.CheckQuest(id);
+            uiManager.SetQuestText(QuestText);
+            if(QuestText == "SceneEnd")
             {
                 LoadNextScene();
                 return;
@@ -391,7 +372,7 @@ public class GameManager : MonoBehaviour
 
         isTalking = false;
         talkIndex = 0;
-        talkPanel.SetBool("isShow", false);
+        uiManager.EnableDialogUIWithAnimation(false);
 
         /*        else
                 {
@@ -404,9 +385,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitTalkDelay(float duration)
     {
-        talkPanel.SetBool("isShow", false);
+        uiManager.EnableDialogUIWithAnimation(false);
         yield return new WaitForSeconds(duration);
-        talkPanel.SetBool("isShow", true);
+        uiManager.EnableDialogUIWithAnimation(true);
     }
 
     public void CheckTalkEvent(string TalkEventKey)
@@ -529,18 +510,21 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("QuestActionIndex" + index.ToString(), questManager.questActionIndex);
         PlayerPrefs.Save();
 
-        DebugUI.text += player.transform.position.ToString() + questManager.questId.ToString() + "\n";
+        uiManager.AddDebugText(player.transform.position.ToString() + questManager.questId.ToString());
     }
 
     public void GameLoad(int index)
     {
-        return;
+        if(uiManager == null)
+        {
+            return;
+        }
 
-        DebugUI.text += "Load Start" + "\n";
+        uiManager.AddDebugText("Load Start");
 
         if (PlayerPrefs.HasKey("PlayerX" + index.ToString()))
         {
-            DebugUI.text += "No Key" + "\n";
+            uiManager.AddDebugText("No Key");
             return;
         }
 
@@ -555,7 +539,7 @@ public class GameManager : MonoBehaviour
         questManager.questActionIndex = questActionIndex;
         questManager.ControlObject();
 
-        DebugUI.text += "Load Complete" + "\n";
+        uiManager.AddDebugText("Load Complete");
     }
 
     public void ClearData()

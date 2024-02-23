@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3764991257052691450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 408873185816259732}
+  - component: {fileID: 5605513629720930010}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408873185816259732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764991257052691450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.54847336, y: -1.24788, z: 6.20568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5605513629720930010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764991257052691450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7bb77aedaaf4843b215cdcb066181b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questId: 1000
+  questActionIndex: 0
+  Map: {fileID: 1038957562151881050, guid: d31fe420ec3d3e94bab3c30c1d05a468, type: 3}
+  questList:
+  - questId: 1000
+    questName: "\uC8FC\uBCC0 \uB458\uB7EC\uBCF4\uAE30"
+    objectId: 010000000200000079000000
+  - questId: 2000
+    questName: "\uBCC0\uAE30\uD1B5\uC73C\uB85C \uAC00\uAE30"
+    objectId: 01000000fa01000003000000
+  - questId: 3000
+    questName: "\uCC3D\uBB38 \uBC14\uB77C\uBCF4\uAE30"
+    objectId: f8010000
+  - questId: 4000
+    questName: "\uC220\uBCD1 \uCC3E\uAE30"
+    objectId: 4401000045010000

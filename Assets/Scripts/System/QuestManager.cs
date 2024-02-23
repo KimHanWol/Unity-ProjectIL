@@ -7,7 +7,9 @@ public class QuestManager : MonoBehaviour
 {
     public int questId;
     public int questActionIndex;
-    public GameObject[] questObjects;
+
+    public GameObject Map;
+    private AutoDialogObject[] questObjects;
 
     [SerializeField]
     private List<QuestData> questList;
@@ -17,6 +19,11 @@ public class QuestManager : MonoBehaviour
     void Awake()
     {
         questDictionary = new Dictionary<int, QuestData>();
+
+        if(Map != null)
+        {
+            questObjects = Map.GetComponentsInChildren<AutoDialogObject>();
+        }
         GenerateData();
     }
 
@@ -92,19 +99,15 @@ public class QuestManager : MonoBehaviour
 
     public void ControlObject()
     {
-        foreach(GameObject questObject in questObjects)
+        foreach(AutoDialogObject AutoDialogObject in questObjects)
         {
-            AutoDialogObject AutoDialogObject = questObject.GetComponent<AutoDialogObject>();
-            if (AutoDialogObject != null)
+            if (AutoDialogObject.QuestIndex + AutoDialogObject.DialogKey == questId + questActionIndex + 1)
             {
-                if (AutoDialogObject.QuestIndex + AutoDialogObject.DialogKey  == questId + questActionIndex + 1)
-                {
-                    questObject.SetActive(true);
-                }
-                else
-                {
-                    questObject.SetActive(false);
-                }
+                AutoDialogObject.gameObject.SetActive(true);
+            }
+            else
+            {
+                AutoDialogObject.gameObject.SetActive(false);
             }
         }
     }

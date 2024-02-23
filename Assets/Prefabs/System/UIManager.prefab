@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &184936098796910168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8331003230024242547}
+  - component: {fileID: 6814662726033910616}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8331003230024242547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184936098796910168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1122.1785, y: 475.1836, z: -6.601818}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6814662726033910616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184936098796910168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a81254e0fd2dc4d8f8a37bd0d2c404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutSceneUI: {fileID: 3689041319268514325, guid: b61408dd69ffa0f4fa77ff1c62421c7d, type: 3}
+  menuUI: {fileID: 5241259066710220744, guid: 06b440a3289202a4f84fd03cc257ed73, type: 3}
+  DebugUI: {fileID: 6669359900325485721, guid: 9f3603aa28608be439418821b8c58279, type: 3}
+  QuestUI: {fileID: 3543952595984698516, guid: 4c6013bf9fd6b1b41929c79e0f004f71, type: 3}
+  PortraitUI: {fileID: 6303909870131154033, guid: 530920fabc0bcb74c888384c12679dcb, type: 3}
+  DialogUI: {fileID: 6669359900325485721, guid: 9f3603aa28608be439418821b8c58279, type: 3}
+  CutSceneDataList:
+  - CutSceneKey: Sprite_Picture
+    CutSceneSprite: {fileID: 21300000, guid: 7ac1c8a6cbb80804dadf15a72d63e9cf, type: 3}
+  AnimationList:
+  - AnimationType: 0
+    TargetAnimator: {fileID: 6563775159776529985, guid: ba2d0680f4c195e4b905bab2be5fdfa2, type: 3}
+  - AnimationType: 1
+    TargetAnimator: {fileID: 6563775159776529985, guid: ba2d0680f4c195e4b905bab2be5fdfa2, type: 3}
+  - AnimationType: 2
+    TargetAnimator: {fileID: 6563775159776529985, guid: ba2d0680f4c195e4b905bab2be5fdfa2, type: 3}

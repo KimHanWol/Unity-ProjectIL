@@ -144,10 +144,10 @@ public class TalkManager : MonoBehaviour
                 ));
         }
 
-        portraitData.Add(1000 + 0, portraitArr[0]);
-        portraitData.Add(1000 + 1, portraitArr[1]);
-        portraitData.Add(1000 + 2, portraitArr[2]);
-        portraitData.Add(1000 + 3, portraitArr[3]);
+        //portraitData.Add(1000 + 0, portraitArr[0]);
+        //portraitData.Add(1000 + 1, portraitArr[1]);
+        //portraitData.Add(1000 + 2, portraitArr[2]);
+        //portraitData.Add(1000 + 3, portraitArr[3]);
     }
 
     public bool IsTalkDataForCurrentQuest(int talkDataId, int questId)

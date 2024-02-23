@@ -9,18 +9,12 @@ public class TypingAnimation : MonoBehaviour
     public GameObject EndCursor;
     public bool bIsPlaying;
 
-    Text msgText;
-    AudioSource audioSource;
+    public Text msgText;
+    public AudioSource audioSource;
 
     string targetMsg;
     int index;
     float interval;
-
-    private void Awake()
-    {
-        msgText = GetComponent<Text>();
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void SetMsg(string msg)
     {
@@ -39,6 +33,9 @@ public class TypingAnimation : MonoBehaviour
 
     void EffectStart()
     {
+        msgText = GetComponent<Text>();
+        audioSource = GetComponent<AudioSource>();
+
         msgText.text = "";
         index = 0;
         EndCursor.SetActive(false);
