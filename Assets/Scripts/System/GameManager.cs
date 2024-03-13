@@ -24,8 +24,12 @@ public class GameManager : MonoBehaviour
     public int talkIndex;
 
     public bool CanAction;
-    private bool IsPreAnimationPlaying;
-    private bool IsPostAnimationPlaying;
+    private bool IsPreTalkEventStarted;
+    private bool IsPlayingTalkEventStarted;
+    private bool IsPostTalkEventStarted;
+
+    private bool IsTalkEventEnded;
+
     private bool IsTalkDelaying;
     LFGameObject ScanLFObject;
     private LFGameObject CurrentlyInteractedObject;
@@ -59,8 +63,6 @@ public class GameManager : MonoBehaviour
                 uiManager.ToggleMenu();
             }
         }
-
-        CanAction = !IsPreAnimationPlaying && !IsPostAnimationPlaying && !IsTalkDelaying;
     }
 
     public bool Action()
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
                 AutoDialogObject autoDialogObject = ScanLFObject.GetComponent<AutoDialogObject>();
                 if (autoDialogObject != null)
                 {
-                    IsActionComplete = Talk(autoDialogObject.DialogKey, autoDialogObject.IsNPC);
+                    IsActionComplete = Talk(autoDialogObject.id, autoDialogObject.IsNPC);
                 }
                 break;
             default:
@@ -129,9 +131,27 @@ public class GameManager : MonoBehaviour
         return IsActionComplete;
     }
 
+    public bool CheckCanAction()
+    {
+        CanAction =
+            //During Talk Event Play
+            !((IsPreTalkEventStarted || IsPlayingTalkEventStarted || IsPostTalkEventStarted) && !IsTalkEventEnded) &&
+            !IsTalkDelaying;
+
+        return CanAction;
+    }
+
     public bool Talk(int id,  bool isNpc)
     {
         if (ScanLFObject == null)
+        {
+            return false;
+        }
+
+        CheckCanAction();
+
+        //When Talk Event Playing
+        if (CanAction == false)
         {
             return false;
         }
@@ -189,48 +209,103 @@ public class GameManager : MonoBehaviour
 
         //Pre Play UI Animation
         {
-            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Pre);
-            if (IsPreAnimationPlaying == false)
+            string[] TalkAnimationKeyStringList = talkManager.GetAnimationKeyList(talkDataId, talkIndex, AnimationTiming.Pre);
+            if (IsPreTalkEventStarted == false)
             {
-                float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                float AnimationLength = 0.0f;
+                foreach (string TalkAnimationKeyString in TalkAnimationKeyStringList)
+                {
+                    float InAnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                    AnimationLength = AnimationLength > InAnimationLength ? AnimationLength : InAnimationLength;
+                }
                 if (AnimationLength > 0)
                 {
-                    IsPreAnimationPlaying = true;
+                    IsPreTalkEventStarted = true;
                     isTalking = false;
                     uiManager.EnableDialogUIWithAnimation(false);
                     StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
                     return true;
                 }
             }
-            IsPreAnimationPlaying = false;
+
+            IsPreTalkEventStarted = false;
             uiManager.EnableDialogUIWithAnimation(true);
+        }
+
+        //Pre Talk Event
+        string[] PreTalkEventKeyList = talkManager.GetTalkEventKeyList(talkDataId, talkIndex, AnimationTiming.Pre);
+        foreach (string PreTalkEventKey in PreTalkEventKeyList)
+        {
+            CheckTalkEvent(PreTalkEventKey);
         }
 
         //Playing Play UI Animation
         {
-            string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex, TalkAnimationTiming.Playing);
-            uiManager.PlayAnimation(TalkAnimationKeyString);
+            string[] TalkAnimationKeyStringList = talkManager.GetAnimationKeyList(talkDataId, talkIndex, AnimationTiming.Playing);
+            if (IsPlayingTalkEventStarted == false)
+            {
+                float AnimationLength = 0.0f;
+                foreach (string TalkAnimationKeyString in TalkAnimationKeyStringList)
+                {
+                    float InAnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                    AnimationLength = AnimationLength > InAnimationLength ? AnimationLength : InAnimationLength;
+                }
+                if (AnimationLength > 0)
+                {
+                    IsPlayingTalkEventStarted = true;
+                    isTalking = false;
+                    uiManager.EnableDialogUIWithAnimation(false);
+                    StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
+                    return true;
+                }
+            }
+
+            IsPlayingTalkEventStarted = false;
+            uiManager.EnableDialogUIWithAnimation(true);
+        }
+
+        //Playing Talk Event
+        string[] PlayingTalkEventKeyList = talkManager.GetTalkEventKeyList(talkDataId, talkIndex, AnimationTiming.Playing);
+        foreach (string PlayingTalkEventKey in PlayingTalkEventKeyList)
+        {
+            CheckTalkEvent(PlayingTalkEventKey);
         }
 
         //Post Play UI Animation
         {
             if(talkIndex > 0)
             {
-                string TalkAnimationKeyString = talkManager.GetAnimationKey(talkDataId, talkIndex - 1, TalkAnimationTiming.Post);
-                if (IsPostAnimationPlaying == false)
+                string[] TalkAnimationKeyStringList = talkManager.GetAnimationKeyList(talkDataId, talkIndex - 1, AnimationTiming.Post);
+                if (IsPostTalkEventStarted == false)
                 {
-                     float AnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                    float AnimationLength = 0.0f;
+                    foreach (string TalkAnimationKeyString in TalkAnimationKeyStringList)
+                    {
+                        float InAnimationLength = uiManager.PlayAnimation(TalkAnimationKeyString);
+                        AnimationLength = AnimationLength > InAnimationLength ? AnimationLength : InAnimationLength;
+                    }
                     if (AnimationLength > 0)
                     {
-                        IsPostAnimationPlaying = true;
+                        IsPostTalkEventStarted = true;
                         isTalking = false;
                         uiManager.EnableDialogUIWithAnimation(false);
-                        StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, false));
+                        StartCoroutine(WaitForSecondsToTalk(AnimationLength, id, isNpc));
                         return true;
                     }
                 }
-                IsPostAnimationPlaying = false;
+
+                IsPostTalkEventStarted = false;
                 uiManager.EnableDialogUIWithAnimation(true);
+            }
+        }
+
+        //Post Talk Event
+        if(talkIndex > 0)
+        {
+            string[] PostTalkEventKeyList = talkManager.GetTalkEventKeyList(talkDataId, talkIndex - 1, AnimationTiming.Post);
+            foreach(string PostTalkEventKey in PostTalkEventKeyList)
+            {
+                CheckTalkEvent(PostTalkEventKey);
             }
         }
 
@@ -240,7 +315,7 @@ public class GameManager : MonoBehaviour
             soundManager.PlayAudioSound(EffectSoundKey);
         }
 
-        //If there Is Cutcene Event
+        //Cutcene Event
         string CutSceneKey = talkManager.GetCutSceneKey(talkDataId, talkIndex);
         if(CutSceneKey != null && CutSceneKey != "")
         {
@@ -250,10 +325,6 @@ public class GameManager : MonoBehaviour
         {
             uiManager.HideCutScene();
         }
-
-        //Post Talk Event
-        string TalkEventKey = talkManager.GetTalkEventKey(talkDataId, talkIndex);
-        CheckTalkEvent(TalkEventKey);
 
         //End Talk
         if (talkData == null) 
@@ -343,9 +414,12 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator WaitForSecondsToTalk(float AnimationLength, int id, bool isNpc)
     {
+        IsTalkEventEnded = false;
+
         yield return new WaitForSeconds(0.01f);
         yield return new WaitForSeconds(AnimationLength);
 
+        IsTalkEventEnded = true;
         Talk(id, isNpc);
     }
 
@@ -430,6 +504,13 @@ public class GameManager : MonoBehaviour
                 PlayerAnimator.SetInteger("vAxisRaw", -1);
                 PlayerAnimator.SetBool("isChange", true);
                 break;
+            case "Teleport_Home":
+                player.transform.position = new Vector3(-3.09f, -2.89f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
             case "Teleport_VR_Home":
                 player.transform.position = new Vector3(1.0f, 43.0f, -1.0f);
                 player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -446,6 +527,13 @@ public class GameManager : MonoBehaviour
                 break;
             case "Teleport_VR_Vacuity_White":
                 player.transform.position = new Vector3(1.0f, -53.0f, -1.0f);
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                PlayerAnimator.SetInteger("vAxisRaw", -1);
+                PlayerAnimator.SetBool("isChange", true);
+                break;
+            case "Teleport_VR_Reality":
+                player.transform.position = new Vector3(16.9f, -4.2f, -1.0f);
                 player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 PlayerCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 PlayerAnimator.SetInteger("vAxisRaw", -1);

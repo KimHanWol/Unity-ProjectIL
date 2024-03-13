@@ -10,6 +10,7 @@ public enum AnimationType
     FadeIn,
     FadeOut,
     FadeInOut,
+    CarAccident,
 }
 
 [Serializable]
@@ -68,6 +69,30 @@ public class UIManager : MonoBehaviour
         Debug.Log("Can't Play Animation Because Can't Find Animation (" + AnimationKeyString + ")");
         return 0;
     }
+
+    public bool IsAnimationPlaying(string AnimationKeyString)
+    {
+        if (AnimationKeyString == null || AnimationKeyString == "")
+        {
+            return false;
+        }
+
+        AnimationType TargetAnimation = (AnimationType)Enum.Parse(typeof(AnimationType), AnimationKeyString);
+
+        foreach (AnimationData data in AnimationList)
+        {
+            if (data.AnimationType == TargetAnimation)
+            {
+                if (data.TargetAnimator != null)
+                {
+                    return data.TargetAnimator.GetCurrentAnimatorStateInfo(0).length > 0;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     public void ShowCutScene(string InCutSceneKey)
     {

@@ -185,7 +185,7 @@ public class TalkManager : MonoBehaviour
         return talkData[id].DialogData[talkIndex].DialogText;
     }
 
-    public enum TalkAnimationTiming
+    public enum AnimationTiming
     {
         Pre,
         Playing,
@@ -193,42 +193,55 @@ public class TalkManager : MonoBehaviour
     }
 
 
-    public string GetAnimationKey(int id, int talkIndex, TalkAnimationTiming Timing)
+    public string[] GetAnimationKeyList(int id, int talkIndex, AnimationTiming Timing)
     {
         if(talkData == null)
         {
-            return "";
+            return new string[] { };
         }
 
         if (talkData.ContainsKey(id) != true)
         {
-            return "";
+            return new string[] { };
         }
 
         if (talkData[id].DialogData.Count <= talkIndex)
         {
-            return "";
+            return new string[] { };
         }
 
         if (talkData[id].DialogData[talkIndex].AnimationKey == "")
         {
-            return "";
+            return new string[] { };
         }
 
-        string[] SplitAnimationKeyArray = talkData[id].DialogData[talkIndex].AnimationKey.Split("-");
-        if (SplitAnimationKeyArray.Length <= 0)
+        string[] AnimationKeyList = talkData[id].DialogData[talkIndex].AnimationKey.Split('/');
+        string[] ResultAnimationKeyList = new string[AnimationKeyList.Length];
+        int ResultAnimationKeyIndex = 0;
+        foreach (string AnimationKey in AnimationKeyList)
         {
-            return "";
+            string SplitAnimationKey = "";
+            string[] SplitAnimationKeyArray = AnimationKey.Split("-");
+            if (SplitAnimationKeyArray.Length <= 0)
+            {
+                return new string[] { };
+            }
+
+            if ((Timing == AnimationTiming.Pre && SplitAnimationKeyArray[0] == "Pre") ||
+            (Timing == AnimationTiming.Post && SplitAnimationKeyArray[0] == "Post"))
+            {
+                SplitAnimationKey = SplitAnimationKeyArray[1];
+            }
+            else if (Timing == AnimationTiming.Playing && SplitAnimationKeyArray.Length == 1)
+            {
+                SplitAnimationKey = SplitAnimationKeyArray[0];
+            }
+
+            ResultAnimationKeyList[ResultAnimationKeyIndex] = SplitAnimationKey;
+            ResultAnimationKeyIndex++;
         }
 
-        if ((Timing == TalkAnimationTiming.Pre && SplitAnimationKeyArray[0] == "Pre") ||
-            (Timing == TalkAnimationTiming.Post && SplitAnimationKeyArray[0] == "Post") ||
-            Timing == TalkAnimationTiming.Playing && SplitAnimationKeyArray.Length == 1)
-        {
-            return SplitAnimationKeyArray[1];
-        }
-
-        return "";
+        return ResultAnimationKeyList;
     }
 
     public string GetSoundKey(int id, int talkIndex)
@@ -297,23 +310,49 @@ public class TalkManager : MonoBehaviour
         return talkData[id].DialogData[talkIndex].CutSceneKey;
     }
 
-    public string GetTalkEventKey(int id, int talkIndex)
+    public string[] GetTalkEventKeyList(int id, int talkIndex, AnimationTiming Timing)
     {
         if (talkData == null)
         {
-            return "";
+            return new string[] { };
         }
 
         if (talkData.ContainsKey(id) != true)
         {
-            return "";
+            return new string[] { };
         }
 
         if (talkData[id].DialogData.Count <= talkIndex)
         {
-            return "";
+            return new string[] { };
         }
 
-        return talkData[id].DialogData[talkIndex].TalkEventKey;
+        string[] TalkEventKeyList = talkData[id].DialogData[talkIndex].TalkEventKey.Split('/');
+        string[] ResultTalkEventKeyList = new string[TalkEventKeyList.Length];
+        int ResultTalkEventKeyIndex = 0;
+        foreach(string TalkEventKey in TalkEventKeyList)
+        {
+            string SplitTalkEventKey = "";
+            string[] SplitTalkEventKeyArray = TalkEventKey.Split("-");
+            if (SplitTalkEventKeyArray.Length <= 0)
+            {
+                return new string[]{ };
+            }
+
+            if ((Timing == AnimationTiming.Pre && SplitTalkEventKeyArray[0] == "Pre") ||
+                (Timing == AnimationTiming.Post && SplitTalkEventKeyArray[0] == "Post"))
+            {
+                SplitTalkEventKey = SplitTalkEventKeyArray[1];
+            }
+            else if (Timing == AnimationTiming.Playing && SplitTalkEventKeyArray.Length == 1)
+            {
+                SplitTalkEventKey = SplitTalkEventKeyArray[0];
+            }
+
+            ResultTalkEventKeyList[ResultTalkEventKeyIndex] = SplitTalkEventKey;
+            ResultTalkEventKeyIndex++;
+        }
+
+        return ResultTalkEventKeyList;
     }
 }
